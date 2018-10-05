@@ -138,3 +138,1289 @@ Creating helloXC.xe
 ../src/helloXC.xc: Error: Undefined reference to 'hello'
 xmake[1]: *** [bin//helloXC.xe] Error 1
 xmake: *** [bin//helloXC.xe] Error 2
+14:37:18 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing helloXC.xc
+../src/helloXC.xc:12:22: error: unknown function identifier `hello' (possibly missing prototype?)
+        on tile[0] : hello(1);
+                     ^
+xmake[1]: *** [.build/src/helloXC.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+14:37:43 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing helloXC.xc
+Propagating analysis
+Creating dependencies for helloXC.xc
+Compiling helloXC.xc
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
+14:38:44 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Propagating analysis
+Creating dependencies for partc.c
+Compiling partc.c
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
+14:39:32 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Analyzing helloXC.xc
+Propagating analysis
+Creating dependencies for helloXC.xc
+Creating dependencies for partc.c
+Compiling partc.c
+Compiling helloXC.xc
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
+14:40:32 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing helloXC.xc
+Propagating analysis
+Creating dependencies for helloXC.xc
+Compiling helloXC.xc
+Creating helloXC.xe
+Build Complete
+14:45:42 **** Clean-only build of configuration Default for project ants ****
+xmake CONFIG=Default clean 
+Cleaning /Users/nikolay/concurrency/ants
+rm -rf './bin/'
+rm -rf '.build'
+14:45:42 **** Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:15:1: error: parse error before '}' token
+}
+^
+../src/ants.xc:12:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7,2,10,0,3,6,8,7,6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+14:45:43 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:46:06 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:12:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7,2,10,0,3,6,8,7,6};
+               ^~~~~~~~~
+Propagating analysis
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:12:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7,2,10,0,3,6,8,7,6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+14:46:07 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+15:07:03 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:19:5: error: must use 'struct' tag to refer to type 'Ant'
+    Ant *new_ant;
+    ^
+    struct 
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:21:29: error: use of undeclared identifier 'Ant'
+    new_ant = malloc(sizeof(Ant));
+                            ^
+../src/partc.c:22:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = world;
+    ~~~~~~~~~~~~~~ ^
+../src/partc.c:26:12: error: returning 'struct Ant *' from a function with incompatible result type 'struct Ant'; dereference with *
+    return new_ant;
+           ^~~~~~~
+           *
+1 warning and 4 errors generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:07:40 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:17:12: error: incomplete result type 'struct ant' in function definition
+struct ant makeAnt(uint world[], int ant_id, int ant_pos) {
+           ^
+../src/partc.c:17:8: note: forward declaration of 'struct ant'
+struct ant makeAnt(uint world[], int ant_id, int ant_pos) {
+       ^
+../src/partc.c:19:10: error: use of undeclared identifier 'new_ant'
+    ant *new_ant;
+         ^
+../src/partc.c:21:5: error: use of undeclared identifier 'new_ant'
+    new_ant = malloc(sizeof(struct ant));
+    ^
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:21:22: error: invalid application of 'sizeof' to an incomplete type 'struct ant'
+    new_ant = malloc(sizeof(struct ant));
+                     ^     ~~~~~~~~~~~~
+../src/partc.c:17:8: note: forward declaration of 'struct ant'
+struct ant makeAnt(uint world[], int ant_id, int ant_pos) {
+       ^
+../src/partc.c:22:5: error: use of undeclared identifier 'new_ant'
+    new_ant->world = world;
+    ^
+../src/partc.c:23:5: error: use of undeclared identifier 'new_ant'
+    new_ant->food_counter = 0;
+    ^
+../src/partc.c:24:5: error: use of undeclared identifier 'new_ant'
+    new_ant->pos = ant_pos;
+    ^
+../src/partc.c:26:13: error: use of undeclared identifier 'new_ant'
+    return *new_ant;
+            ^
+1 warning and 8 errors generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:07:50 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:19:5: error: must use 'struct' tag to refer to type 'Ant'
+    Ant *new_ant;
+    ^
+    struct 
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:21:29: error: use of undeclared identifier 'Ant'
+    new_ant = malloc(sizeof(Ant));
+                            ^
+../src/partc.c:22:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = world;
+    ~~~~~~~~~~~~~~ ^
+1 warning and 3 errors generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:08:11 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:21:29: error: use of undeclared identifier 'Ant'
+    new_ant = malloc(sizeof(Ant));
+                            ^
+../src/partc.c:22:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = world;
+    ~~~~~~~~~~~~~~ ^
+1 warning and 2 errors generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:08:16 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:22:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = world;
+    ~~~~~~~~~~~~~~ ^
+1 warning and 1 error generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:10:29 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(world, w, len * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+../src/partc.c:23:22: error: use of undeclared identifier 'len'
+    memcpy(world, w, len * sizeof(uint));
+                     ^
+../src/partc.c:24:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = world;
+    ~~~~~~~~~~~~~~ ^
+2 warnings and 2 errors generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:10:49 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+../src/partc.c:24:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = world;
+    ~~~~~~~~~~~~~~ ^
+2 warnings and 1 error generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:11:55 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:12:18: error: expected ';' at end of declaration list
+   uint world[12] = malloc(12 * sizeof(uint));
+                 ^
+                 ;
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings and 1 error generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:12:35 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:22: error: expected expression
+    new_ant->world = = malloc(12 * sizeof(uint));
+                     ^
+../src/partc.c:25:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:25:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings and 1 error generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:12:44 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:20: error: array type 'uint [12]' is not assignable
+    new_ant->world = malloc(12 * sizeof(uint));
+    ~~~~~~~~~~~~~~ ^
+../src/partc.c:25:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:25:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings and 1 error generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:12:57 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:22:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:22:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Analyzing ants.xc
+../src/ants.xc:15:1: error: 'ant' redeclared as different kind of symbol
+extern void ant (uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:13:3: note: previous declaration of 'ant' was here
+} ant;
+  ^~~
+../src/ants.xc:19:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:13:23 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:22:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:22:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Analyzing ants.xc
+../src/ants.xc:15:1: error: 'ant' redeclared as different kind of symbol
+extern void ant (uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:13:3: note: previous declaration of 'ant' was here
+} ant;
+  ^~~
+../src/ants.xc:19:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:13:50 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:15:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Propagating analysis
+Creating dependencies for ants.xc
+Creating dependencies for partc.c
+Compiling ants.xc
+../src/ants.xc:15:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Compiling partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:22:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:22:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Creating ants.xe
+Build Complete
+15:14:33 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:21:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+../src/partc.c:21:12: warning: variable 'new_ant' is uninitialized when used here [-Wuninitialized]
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+           ^~~~~~~
+../src/partc.c:19:24: note: initialize the variable 'new_ant' to silence this warning
+    struct Ant *new_ant;
+                       ^
+                        = NULL
+2 warnings generated.
+Propagating analysis
+Creating dependencies for partc.c
+Compiling partc.c
+../src/partc.c:21:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:21:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+../src/partc.c:21:12: warning: variable 'new_ant' is uninitialized when used here [-Wuninitialized]
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+           ^~~~~~~
+../src/partc.c:19:24: note: initialize the variable 'new_ant' to silence this warning
+    struct Ant *new_ant;
+                       ^
+                        = NULL
+2 warnings generated.
+Creating ants.xe
+Build Complete
+15:15:06 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Analyzing ants.xc
+../src/ants.xc:15:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Propagating analysis
+Creating dependencies for ants.xc
+Creating dependencies for partc.c
+Compiling partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Compiling ants.xc
+../src/ants.xc:15:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:16:29 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:8:10: fatal error: 'partc.c.' file not found
+#include <partc.c.>
+         ^
+../src/ants.xc:19:13: error: passing arg 1 of `ant' discards const qualifier from reference target type
+        ant(world, 0, 1);
+            ^~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:16:53 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, int ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:19:13: error: incompatible type for argument 1 of `ant'
+        ant(*world, 0, 1);
+            ^~~~~~
+../src/ants.xc:19:13: error: passing arg 1 of `ant' discards const qualifier from reference target type
+        ant(*world, 0, 1);
+            ^~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:17:24 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:17: error: parse error before "world"
+    const *uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+                ^
+../src/ants.xc:16:17: error: use of undeclared identifer `world'
+../src/ants.xc:16:29: error: parse error before '{' token
+    const *uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+                            ^
+../src/ants.xc:16:11: warning: unused variable `uint' [-Wunused-variable]
+    const *uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+          ^~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:17:38 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:19:13: error: incompatible type for argument 1 of `ant'
+        ant(*world, 0, 1);
+            ^~~~~~
+../src/ants.xc:19:13: error: passing arg 1 of `ant' discards const qualifier from reference target type
+        ant(*world, 0, 1);
+            ^~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:17:49 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:19:13: error: incompatible type for argument 1 of `ant' (change of pointer target requires explicit cast)
+        ant(&world, 0, 1);
+            ^~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:17:57 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:19:13: error: parse error before '[' token
+        ant([], 0, 1);
+            ^
+../src/ants.xc:20:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+../src/ants.xc:21:5: error: parse error before "return"
+    return 0;
+    ^
+../src/ants.xc:23:1: error: parse error before '}' token
+}
+^
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:18:20 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:19:13: error: parse error before '{' token
+        ant({1,2,3}, 0, 1);
+            ^
+../src/ants.xc:20:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+../src/ants.xc:21:5: error: parse error before "return"
+    return 0;
+    ^
+../src/ants.xc:23:1: error: parse error before '}' token
+}
+^
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:18:28 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:19:13: error: parse error before '[' token
+        ant([1,2,3], 0, 1);
+            ^
+../src/ants.xc:20:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+../src/ants.xc:21:5: error: parse error before "return"
+    return 0;
+    ^
+../src/ants.xc:23:1: error: parse error before '}' token
+}
+^
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:18:36 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:18:44 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:19:53 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, int ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:20:11 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:12:1: error: conflicting types for 'ant'
+extern void ant(uint world[], int ant_id, uint ant_pos);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:17:12: note: previous definition of 'ant' was here
+struct Ant ant(uint w[], int ant_id, uint ant_pos) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:20:32 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:21:46 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:21:15: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned int)'
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:21:15: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/partc.c:23:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:23:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+2 warnings generated.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:21:15: error: unknown function identifier `malloc' (possibly missing prototype?)
+    new_ant = malloc(sizeof(struct Ant));
+              ^
+../src/partc.c:23:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:22:03 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:24:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)'
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/partc.c:24:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+1 warning generated.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:22:13: error: incompatible types in assignment (change of pointer target requires explicit cast)
+    new_ant = malloc(sizeof(struct Ant));
+    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/partc.c:24:5: error: unknown function identifier `memcpy' (possibly missing prototype?)
+    memcpy(new_ant->world, w, 12 * sizeof(uint));
+    ^
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:22:23 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:25:5: warning: variable 'new_ant' is uninitialized when used here [-Wuninitialized]
+    new_ant->food_counter = 0;
+    ^~~~~~~
+../src/partc.c:20:24: note: initialize the variable 'new_ant' to silence this warning
+    struct Ant *new_ant;
+                       ^
+                        = NULL
+1 warning generated.
+Analyzing ants.xc
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Propagating analysis
+Creating dependencies for ants.xc
+Creating dependencies for partc.c
+Compiling partc.c
+../src/partc.c:25:5: warning: variable 'new_ant' is uninitialized when used here [-Wuninitialized]
+    new_ant->food_counter = 0;
+    ^~~~~~~
+../src/partc.c:20:24: note: initialize the variable 'new_ant' to silence this warning
+    struct Ant *new_ant;
+                       ^
+                        = NULL
+1 warning generated.
+Compiling ants.xc
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:22:50 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Propagating analysis
+Creating dependencies for ants.xc
+Creating dependencies for partc.c
+Compiling partc.c
+Compiling ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:22:13: error: incompatible types in assignment (change of pointer target requires explicit cast)
+    new_ant = malloc(sizeof(struct Ant));
+    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.o] Error 1
+xmake: *** [bin//ants.xe] Error 2
+15:23:19 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Creating dependencies for ants.xc
+Creating dependencies for partc.c
+Compiling partc.c
+Compiling ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:22:13: error: incompatible types in assignment (change of pointer target requires explicit cast)
+    new_ant = malloc(sizeof(struct Ant));
+    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.o] Error 1
+xmake: *** [bin//ants.xe] Error 2
+15:24:06 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:22:13: error: incompatible types in assignment (change of pointer target requires explicit cast)
+    new_ant = malloc(sizeof(struct Ant));
+    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:24:33 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+../src/partc.c:22:14: error: assigning to 'struct Ant' from incompatible type 'void *'
+    *new_ant = malloc(sizeof(struct Ant));
+             ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+xmake[1]: *** [.build/src/partc.c.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:24:45 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Analyzing ants.xc
+In file included from ../src/ants.xc:8:
+../src/partc.c:22:13: error: incompatible types in assignment (change of pointer target requires explicit cast)
+    new_ant = malloc(sizeof(struct Ant));
+    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:26:09 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Analyzing ants.xc
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Propagating analysis
+Creating dependencies for ants.xc
+Creating dependencies for partc.c
+Compiling partc.c
+Compiling ants.xc
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:27:06 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:11:9: warning: type defaults to `int' in declaration of `ant' [-Wimplicit-int]
+typedef ant a {
+        ^~~
+../src/ants.xc:11:13: error: parse error before "a"
+typedef ant a {
+            ^
+../src/ants.xc:11:13: error: invalid declarator for function declaration
+typedef ant a {
+            ^
+../src/ants.xc:11:13: warning: return type defaults to `int' [-Wreturn-type]
+typedef ant a {
+            ^
+../src/ants.xc:14:10: error: array size missing in 'world'
+    uint world[];
+         ^~~~~~~
+../src/ants.xc:15:1: warning: control reaches end of non-void function [-Wreturn-type]
+};
+^
+../src/ants.xc:12:9: warning: unused variable `food' [-Wunused-variable]
+    int food;
+        ^~~~
+../src/ants.xc:13:9: warning: unused variable `pos' [-Wunused-variable]
+    int pos;
+        ^~~
+../src/ants.xc:14:10: warning: unused variable `world' [-Wunused-variable]
+    uint world[];
+         ^~~~~~~
+../src/ants.xc:21:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:28:07 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:16:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:28:09 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//ants.xe' is up to date.
+Build Complete
+15:28:27 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:18:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:18:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:28:57 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:15:24: error: parse error before "id"
+ant make(uint world[], id, pos) {
+                       ^
+../src/ants.xc:17:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../src/ants.xc:21:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:29:08 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:17:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../src/ants.xc:21:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Propagating analysis
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:17:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../src/ants.xc:21:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:29:37 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:17:12: error: parse error before "ant"
+    return ant a;
+           ^
+../src/ants.xc:17:5: warning: `return' with no value, in function returning non-void [-Wreturn-type]
+    return ant a;
+    ^
+../src/ants.xc:19:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../src/ants.xc:17:16: warning: unused variable `a' [-Wunused-variable]
+    return ant a;
+               ^
+../src/ants.xc:23:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:29:52 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:18:12: error: parse error before "ant"
+    return ant *a;
+           ^
+../src/ants.xc:18:5: warning: `return' with no value, in function returning non-void [-Wreturn-type]
+    return ant *a;
+    ^
+../src/ants.xc:20:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../src/ants.xc:18:16: warning: unused variable `a' [-Wunused-variable]
+    return ant *a;
+               ^~
+../src/ants.xc:24:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:30:25 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:25:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:25:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:30:34 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:24:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:24:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:31:11 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:18:5: error: indirection requires a pointer argument
+    a->food = 0;
+    ^~~~~~~
+../src/ants.xc:19:5: error: indirection requires a pointer argument
+    a->id = id;
+    ^~~~~
+../src/ants.xc:20:5: error: indirection requires a pointer argument
+    a->pos = pos;
+    ^~~~~~
+../src/ants.xc:29:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:31:19 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:23:12: error: incompatible types in return
+    return a;
+           ^
+../src/ants.xc:29:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:31:28 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:23:12: error: parse error before "struct"
+    return struct Ant a;
+           ^
+../src/ants.xc:23:5: warning: `return' with no value, in function returning non-void [-Wreturn-type]
+    return struct Ant a;
+    ^
+../src/ants.xc:23:23: error: redefinition of 'a'
+    return struct Ant a;
+                      ^
+../src/ants.xc:16:16: note: previous definition of 'a' was here
+    struct Ant *a;
+               ^~
+../src/ants.xc:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../src/ants.xc:23:23: warning: unused variable `a' [-Wunused-variable]
+    return struct Ant a;
+                      ^
+../src/ants.xc:29:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+xmake[1]: *** [.build/src/ants.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:31:40 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+../src/ants.xc:29:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating dependencies for ants.xc
+Compiling ants.xc
+../src/ants.xc:29:16: warning: unused variable `world' [-Wunused-variable]
+    const uint world[12] = {10, 0, 1, 7, 2, 10, 0, 3, 6, 8, 7, 6};
+               ^~~~~~~~~
+Creating ants.xe
+Build Complete
+15:46:26 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing ants.xc
+Propagating analysis
+Creating dependencies for ants.xc
+Compiling ants.xc
+Creating ants.xe
+Build Complete
+15:46:57 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//ants.xe' is up to date.
+Build Complete

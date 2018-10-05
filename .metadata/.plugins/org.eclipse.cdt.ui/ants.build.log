@@ -1,0 +1,9 @@
+15:46:57 **** Incremental Build of configuration Default for project ants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//ants.xe' is up to date.
+Build Complete
+
+15:46:58 Build Finished (took 617ms)
+

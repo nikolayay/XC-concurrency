@@ -1,11 +1,9 @@
-14:24:56 **** Incremental Build of configuration Default for project helloXC ****
+14:46:07 **** Incremental Build of configuration Default for project helloXC ****
 xmake CONFIG=Default all 
 Checking build modules
 No build modules used.
-Creating helloXC.xe
-../src/helloXC.xc: Error: Undefined reference to 'hello'
-xmake[1]: *** [bin//helloXC.xe] Error 1
-xmake: *** [bin//helloXC.xe] Error 2
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
 
-14:24:57 Build Finished (took 1s.356ms)
+14:46:08 Build Finished (took 668ms)
 

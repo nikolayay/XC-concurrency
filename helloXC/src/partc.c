@@ -12,8 +12,7 @@ extern void delay(uint delay);
 
 void hello(int a) {
 
-    delay((3 - a ) * 1000)
-            ;
+    delay((3 - a ) * 1000);
     printf("Hello from tile #%d.\n", a);
 
 }
