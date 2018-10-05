@@ -1,0 +1,140 @@
+14:12:29 **** Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing helloXC.xc
+Propagating analysis
+Creating dependencies for helloXC.xc
+Compiling helloXC.xc
+Creating helloXC.xe
+Build Complete
+14:12:48 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:18:57 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing helloXC.xc
+Propagating analysis
+Creating dependencies for helloXC.xc
+Compiling helloXC.xc
+Creating helloXC.xe
+Build Complete
+14:19:01 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:15 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing helloXC.xc
+Creating dependencies for helloXC.xc
+Compiling helloXC.xc
+Creating helloXC.xe
+Build Complete
+14:19:20 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:21 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:22 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:24 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:25 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:26 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:27 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:28 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:30 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:19:33 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//helloXC.xe' is up to date.
+Build Complete
+14:23:47 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing partc.c
+Analyzing helloXC.xc
+Propagating analysis
+Creating dependencies for helloXC.xc
+Creating dependencies for partc.c
+Compiling helloXC.xc
+Compiling partc.c
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
+14:24:40 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
+14:24:49 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
+14:24:56 **** Incremental Build of configuration Default for project helloXC ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Creating helloXC.xe
+../src/helloXC.xc: Error: Undefined reference to 'hello'
+xmake[1]: *** [bin//helloXC.xe] Error 1
+xmake: *** [bin//helloXC.xe] Error 2
