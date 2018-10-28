@@ -200,14 +200,14 @@ void controller(chanend fromAttacker, chanend fromUser) {
   while (!gameEnded) {
     select {
       case fromAttacker :> attempt:
-          // TODO MAKE ANTS NOT PHASE THROUGH UPON DIRECT CONTACT
-          // TODO GRACEFUIL SHUTDOWN
-
           // !!! place your code here to give permission/deny attacker move or to end game
 
           // if in bottom half of desert
-          if  (lastReportedUserAntPosition == attempt) {
+          if  (lastReportedUserAntPosition == attempt && lastReportedAttackerAntPosition <= 8) {
               // forbid move
+              fromAttacker <: 1;
+          // If in top half of desert
+          } else if (lastReportedUserAntPosition == attempt && lastReportedAttackerAntPosition >=14 ) {
               fromAttacker <: 1;
           } else {
               lastReportedAttackerAntPosition = attempt;

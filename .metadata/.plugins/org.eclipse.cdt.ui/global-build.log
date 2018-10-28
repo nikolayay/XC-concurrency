@@ -2548,3 +2548,120 @@ Checking build modules
 No build modules used.
 xmake[1]: `bin//defenderants.xe' is up to date.
 Build Complete
+13:42:05 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:43:28 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:45:22 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:45:42 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:49:18 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:50:12 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:50:56 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+Analyzing defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating dependencies for defendergame.xc
+Compiling defendergame.xc
+../src/defendergame.xc:157:7: warning: unused variable `moveCounter' [-Wunused-variable]
+  int moveCounter = 0;                       //moves of attacker so far
+      ^~~~~~~~~~~
+Creating defenderants.xe
+Build Complete
+13:52:15 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//defenderants.xe' is up to date.
+Build Complete
+13:52:36 **** Incremental Build of configuration Default for project defenderants ****
+xmake CONFIG=Default all 
+Checking build modules
+No build modules used.
+xmake[1]: `bin//defenderants.xe' is up to date.
+Build Complete

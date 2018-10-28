@@ -1,9 +1,9 @@
-13:37:45 **** Incremental Build of configuration Default for project defenderants ****
+13:52:36 **** Incremental Build of configuration Default for project defenderants ****
 xmake CONFIG=Default all 
 Checking build modules
 No build modules used.
 xmake[1]: `bin//defenderants.xe' is up to date.
 Build Complete
 
-13:37:46 Build Finished (took 782ms)
+13:52:36 Build Finished (took 672ms)
 
