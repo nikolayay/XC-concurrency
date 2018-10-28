@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-//PROCESS representing an independent ant
 {int,int,int} ant ( unsigned int id, //the ant identifier
                     const unsigned char w[3][4], //the constant world array
                     unsigned int x, //the starting position x
