@@ -913,4 +913,5 @@
 		<project id="game_of_life.null.1751575291" name="game_of_life"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

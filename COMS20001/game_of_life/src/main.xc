@@ -67,9 +67,40 @@ void DataInStream(char infname[], chanend c_out)
 // Currently the function just inverts the image
 //
 /////////////////////////////////////////////////////////////////////////////////////////
+
+/* add to a width index, wrapping around like a cylinder */
+int x_add (int i, int a) {
+    i += a;
+    while (i < 0) i += IMWD;
+    while (i >= IMWD) i -= IMWD;
+    return i;
+}
+
+/* add to a height index, wrapping around */
+int y_add (int i, int a) {
+    i += a;
+    while (i < 0) i += IMHT;
+    while (i >= IMHT) i -= IMHT;
+    return i;
+}
+
+int count_alive(uchar board[IMWD][IMHT], int i, int j) {
+    int k, l, count;
+    count = 0;
+    /* go around the cell */
+    for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
+        /* only count if at least one of k,l isn't zero */
+        if (k || l) {
+            if (board[x_add(i,k)][y_add(j,l)]) count++;
+        }
+    return count;
+}
+
 void distributor(chanend c_in, chanend c_out, chanend fromAcc)
 {
   uchar val;
+  uchar board[IMHT][IMWD];
+  uchar next_board[IMHT][IMWD];
 
   //Starting up and wait for tilting of the xCore-200 Explorer
   printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
@@ -80,12 +111,60 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc)
   //This just inverts every pixel, but you should
   //change the image according to the "Game of Life"
   printf( "Processing...\n" );
-  for( int y = 0; y < IMHT; y++ ) {   //go through all lines
-    for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
-      c_in :> val;                    //read the pixel value
-      c_out <: (uchar)( val ^ 0xFF ); //send some modified pixel out
+  for( int j = 0; j < IMHT; j++ ) {   //go through all lines
+    for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
+
+        // (i-1, j-1) | (i-1, j) | (i-1, j+1)
+        // (i, j-1)   | (i, j)   | (i, j+1)
+        // (i+1, j-1) | (i+1, j) | (i+1, j+1)
+
+        c_in :> val;//read the pixel value
+
+        // populate board in local memory
+        board[i][j] = val;
+
     }
   }
+
+  //iterate over board
+  int alive;
+  for (int y = 0; y < IMHT; y++ ) {
+      for(int x = 0; x < IMWD; x++) {
+          // 1.Count neighbours.
+          alive = count_alive(board, x, y);
+
+          // 2.Apply rules
+
+        // If a cell is ON and has fewer than two neighbors that are ON, it turns OFF
+        // If a cell is ON and has either two or three neighbors that are ON, it remains ON.
+        // If a cell is ON and has more than three neighbors that are ON, it turns OFF.
+        // If a cell is OFF and has exactly three neighbors that are ON, it turns ON.
+          printf("%d %d count:%d \n", x, y, alive);
+          if ( board[x][y] )
+          {
+              if ( (alive > 3) || ( alive < 2 ) ) {
+                  // DEAD
+                  next_board[x][y] = 0x00;
+              } else {
+                  // ALIVE
+                  next_board[x][y] = 0xFF;
+              }
+           } else {
+              if ( alive == 3 ) {
+                  // ALIVE
+                  next_board[x][y] = 0xFF;
+              } else {
+                  // DEAD
+                  next_board[x][y] = 0x00;
+              }
+           }
+
+          c_out <: (uchar)(next_board[x][y]); //send some modified pixel out
+
+        }
+      }
+  // 0x00 - black
+  // 0xFF - white
   printf( "\nOne processing round completed...\n" );
 }
 
