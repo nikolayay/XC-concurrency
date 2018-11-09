@@ -26,6 +26,9 @@ port p_sda = XS1_PORT_1F;
 #define FXOS8700EQ_OUT_Z_MSB 0x5
 #define FXOS8700EQ_OUT_Z_LSB 0x6
 
+// port to access xCore-200 buttons
+on tile[0] : in port buttons = XS1_PORT_4E;
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //
 // Read Image from PGM file from path infname[] to channel c_out
@@ -96,20 +99,28 @@ int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     return count;
 }
 
-void distributor(chanend c_in, chanend c_out, chanend fromAcc)
+void buttonListener(in port b, chanend toDistrubutor) {
+    int r;
+    while(1) {
+        b when pinseq(15) :> r;
+        b when pinsneq(15) :> r;
+        if ((r==13) || (r==14) ) toDistrubutor <: r;
+    }
+}
+
+void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons)
 {
   uchar val;
+  int tilt;
   uchar board[IMHT][IMWD];
   uchar next_board[IMHT][IMWD];
 
   //Starting up and wait for tilting of the xCore-200 Explorer
   printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
   printf( "Waiting for Board Tilt...\n" );
-  fromAcc :> int value;
+  fromAcc :> tilt;
 
   //Read in and do something with your image values..
-  //This just inverts every pixel, but you should
-  //change the image according to the "Game of Life"
   printf( "Processing...\n" );
   for( int j = 0; j < IMHT; j++ ) {   //go through all lines
     for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
@@ -127,45 +138,79 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc)
   }
 
   //iterate over board
-  int alive;
+  // 14 - SW1 - start processing
+  // 13 - SW2 - export current state
+  int buttonInput = 0;
+  int iterations = 0;
+  int running = 1;
+
+  while(buttonInput != 14) {
+      printf("\nPress SW1 to start processing.\n");
+      fromButtons :> buttonInput;
+      printf("Wrong button dumbass!\n");
+  }
+
+  // Repeatedly run processing on a board iteration.
+  while(running) {
+      select {
+          case fromButtons :> buttonInput : {
+              if(buttonInput == 13) {
+                  running = 0;
+              }
+              continue;
+          }
+          default : {
+              break;
+          }
+      }
+      iterations++;
+
+      printf("Running iteration number %d\n", iterations);
+
+      int alive;
+      for (int y = 0; y < IMHT; y++ ) {
+          for(int x = 0; x < IMWD; x++) {
+              // 1.Count neighbours.
+              alive = count_alive(board, x, y);
+
+              // 2. Apply rules. Build a new board and send message to display.
+              if ( board[x][y] )
+              {
+                  if ( (alive > 3) || ( alive < 2 ) ) {
+                      // DEAD
+                      next_board[x][y] = 0x00;
+                  } else {
+                      // ALIVE
+                      next_board[x][y] = 0xFF;
+                  }
+               } else {
+                  if ( alive == 3 ) {
+                      // ALIVE
+                      next_board[x][y] = 0xFF;
+                  } else {
+                      // DEAD
+                      next_board[x][y] = 0x00;
+                  }
+               }
+            }
+          }
+      // Copy board for next iteration.
+      for (int y = 0; y < IMHT; y++ ) {
+          for(int x = 0; x < IMWD; x++) {
+              board[x][y] = next_board[x][y];
+          }
+        }
+  }
+
+  // Send all pixels back.
   for (int y = 0; y < IMHT; y++ ) {
       for(int x = 0; x < IMWD; x++) {
-          // 1.Count neighbours.
-          alive = count_alive(board, x, y);
-
-          // 2.Apply rules
-
-        // If a cell is ON and has fewer than two neighbors that are ON, it turns OFF
-        // If a cell is ON and has either two or three neighbors that are ON, it remains ON.
-        // If a cell is ON and has more than three neighbors that are ON, it turns OFF.
-        // If a cell is OFF and has exactly three neighbors that are ON, it turns ON.
-          printf("%d %d count:%d \n", x, y, alive);
-          if ( board[x][y] )
-          {
-              if ( (alive > 3) || ( alive < 2 ) ) {
-                  // DEAD
-                  next_board[x][y] = 0x00;
-              } else {
-                  // ALIVE
-                  next_board[x][y] = 0xFF;
-              }
-           } else {
-              if ( alive == 3 ) {
-                  // ALIVE
-                  next_board[x][y] = 0xFF;
-              } else {
-                  // DEAD
-                  next_board[x][y] = 0x00;
-              }
-           }
-
-          c_out <: (uchar)(next_board[x][y]); //send some modified pixel out
-
-        }
+          c_out <: (uchar)(next_board[x][y]);
       }
+  }
   // 0x00 - black
   // 0xFF - white
-  printf( "\nOne processing round completed...\n" );
+  printf( "\n%d processing round(s) completed...\n", iterations );
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -189,7 +234,7 @@ void DataOutStream(char outfname[], chanend c_in)
   //Compile each line of the image and write the image line-by-line
   for( int y = 0; y < IMHT; y++ ) {
     for( int x = 0; x < IMWD; x++ ) {
-      c_in :> line[ x ];
+      c_in :> line[x];
     }
     _writeoutline( line, IMWD );
     printf( "DataOutStream: Line written...\n" );
@@ -234,12 +279,14 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
     //get new x-axis tilt value
     int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
 
+    printf("TILTED::::%d\n ", tilted);
+
     //send signal to distributor after first tilt
-    if (!tilted) {
-      if (x>30) {
-        tilted = 1 - tilted;
-        toDist <: 1;
-      }
+    if (!tilted && x>30) {
+
+        tilted = 1;
+        toDist <: tilted;
+
     }
   }
 }
@@ -256,13 +303,15 @@ i2c_master_if i2c[1];               //interface to orientation
 char infname[] = "test.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
 chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+chan buttonsToDistributor;
 
 par {
     i2c_master(i2c, 1, p_scl, p_sda, 10);   //server thread providing orientation data
-    orientation(i2c[0],c_control);        //client thread reading orientation data
+    orientation(i2c[0],c_control);          //client thread reading orientation data
     DataInStream(infname, c_inIO);          //thread to read in a PGM image
     DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
-    distributor(c_inIO, c_outIO, c_control);//thread to coordinate work on image
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    buttonListener(buttons, buttonsToDistributor);
   }
 
   return 0;
