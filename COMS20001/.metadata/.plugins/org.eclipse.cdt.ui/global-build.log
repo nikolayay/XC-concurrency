@@ -4329,3 +4329,1512 @@ Creating dependencies for main.xc
 Compiling main.xc
 Creating game_of_life.xe
 Build Complete
+15:04:51 **** Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:164:16: error: use of undeclared identifer `fromBoard'
+          case fromBoard :> tiltInput: {
+               ^
+../src/main.xc:164:29: error: use of undeclared identifer `tiltInput'
+          case fromBoard :> tiltInput: {
+                            ^
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:05:10 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:06:45 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:06:52 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:07:34 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:07:39 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:08:19 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:08:44 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:09:22 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:11:13 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:11:29 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:12:31 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:14:13 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:19:45 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:22:12 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:23:38 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:28:53 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:198:16: error: parse error before '}' token
+               } else {
+               ^
+../src/main.xc:202:21: error: parse error before "else"
+                  } else {
+                    ^
+../src/main.xc:208:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:210:23: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:210:23: warning: data definition has no type or storage class [-Wunusual-code]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:210:25: error: parse error before '<' token
+      for (int y = 0; y < IMHT; y++ ) {
+                        ^
+../src/main.xc:210:33: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:210:33: warning: data definition has no type or storage class [-Wunusual-code]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:225:11: error: parse error before string constant
+  printf( "\n%d processing round(s) completed...\n", iterations );
+          ^
+../src/main.xc:225:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "\n%d processing round(s) completed...\n", iterations );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:225:3: error: conflicting types for 'printf'
+  printf( "\n%d processing round(s) completed...\n", iterations );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:239:11: error: parse error before string constant
+  printf( "DataOutStream: Start...\n" );
+          ^
+../src/main.xc:239:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "DataOutStream: Start...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:240:22: error: use of undeclared identifer `outfname'
+  res = _openoutpgm( outfname, IMWD, IMHT );
+                     ^
+../src/main.xc:240:3: warning: type defaults to `int' in declaration of `res' [-Wimplicit-int]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:240:3: warning: data definition has no type or storage class [-Wunusual-code]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:240:9: error: initializer element is not constant
+  res = _openoutpgm( outfname, IMWD, IMHT );
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:241:3: error: parse error before "if"
+  if( res ) {
+  ^
+../src/main.xc:243:5: error: parse error before "return"
+    return;
+    ^
+../src/main.xc:244:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:247:19: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:247:19: warning: data definition has no type or storage class [-Wunusual-code]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:247:21: error: parse error before '<' token
+  for( int y = 0; y < IMHT; y++ ) {
+                    ^
+../src/main.xc:247:29: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:247:29: warning: data definition has no type or storage class [-Wunusual-code]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:251:20: error: parse error before "line"
+    _writeoutline( line, IMWD );
+                   ^
+../src/main.xc:251:5: warning: return type defaults to `int' [-Wreturn-type]
+    _writeoutline( line, IMWD );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:251:5: error: conflicting types for '_writeoutline'
+    _writeoutline( line, IMWD );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/pgmIO.h:16:1: note: previous declaration of '_writeoutline' was here
+int _writeoutline(unsigned char line[], int width);
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:252:13: error: parse error before string constant
+    printf( "DataOutStream: Line written...\n" );
+            ^
+../src/main.xc:252:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf( "DataOutStream: Line written...\n" );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:257:11: error: parse error before string constant
+  printf( "DataOutStream: Done...\n" );
+          ^
+../src/main.xc:257:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "DataOutStream: Done...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:259:1: error: parse error before '}' token
+}
+^
+../src/main.xc:272:12: error: use of undeclared identifer `i2c'
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+           ^
+../src/main.xc:272:3: warning: type defaults to `int' in declaration of `result' [-Wimplicit-int]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:272:3: warning: data definition has no type or storage class [-Wunusual-code]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:272:16: error: trying to call interface function from something that is not an interface
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+           ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:273:3: error: parse error before "if"
+  if (result != I2C_REGOP_SUCCESS) {
+  ^
+../src/main.xc:275:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:279:3: error: parse error before "if"
+  if (result != I2C_REGOP_SUCCESS) {
+  ^
+../src/main.xc:281:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:289:5: error: parse error before '}' token
+    } while (!status_data & 0x08);
+    ^
+../src/main.xc:292:13: error: initializer element is not constant
+    int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:294:12: error: parse error before string constant
+    printf("TILTED::::%d\n ", tilted);
+           ^
+../src/main.xc:294:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf("TILTED::::%d\n ", tilted);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:295:12: error: parse error before string constant
+    printf("X-AXIS ::::%d\n ", x);
+           ^
+../src/main.xc:295:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf("X-AXIS ::::%d\n ", x);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:301:9: warning: type defaults to `int' in declaration of `toDist' [-Wimplicit-int]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:301:9: warning: data definition has no type or storage class [-Wunusual-code]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:301:17: error: parse error before '<:' token
+        toDist <: 1;
+                ^
+../src/main.xc:307:13: warning: type defaults to `int' in declaration of `toDist' [-Wimplicit-int]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:307:13: warning: data definition has no type or storage class [-Wunusual-code]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:307:21: error: parse error before '<:' token
+            toDist <: 0;
+                    ^
+../src/main.xc:328:6: error: global variable `c_inIO' has type chan
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+     ^~~~~~
+../src/main.xc:328:14: error: global variable `c_outIO' has type chan
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+             ^~~~~~~
+../src/main.xc:328:23: error: global variable `c_control' has type chan
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+                      ^~~~~~~~~
+../src/main.xc:329:6: error: global variable `buttonsToDistributor' has type chan
+chan buttonsToDistributor;
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.xc:331:1: error: parse error before "par"
+par {
+^
+../src/main.xc:333:17: error: parse error before "i2c"
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+                ^
+../src/main.xc:333:5: warning: return type defaults to `int' [-Wreturn-type]
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:334:18: error: parse error before "infname"
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+                 ^
+../src/main.xc:334:5: warning: return type defaults to `int' [-Wreturn-type]
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:334:5: error: conflicting types for 'DataInStream'
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:37:6: note: previous definition of 'DataInStream' was here
+void DataInStream(char infname[], chanend c_out)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:335:19: error: parse error before "outfname"
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+                  ^
+../src/main.xc:335:5: warning: return type defaults to `int' [-Wreturn-type]
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:336:17: error: parse error before "c_inIO"
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+                ^
+../src/main.xc:336:5: warning: return type defaults to `int' [-Wreturn-type]
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:336:5: error: conflicting types for 'distributor'
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:112:6: note: previous definition of 'distributor' was here
+void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:337:20: error: parse error before "buttons"
+    buttonListener(buttons, buttonsToDistributor);
+                   ^
+../src/main.xc:337:5: warning: return type defaults to `int' [-Wreturn-type]
+    buttonListener(buttons, buttonsToDistributor);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:337:5: error: conflicting types for 'buttonListener'
+    buttonListener(buttons, buttonsToDistributor);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:102:6: note: previous definition of 'buttonListener' was here
+void buttonListener(in port b, chanend toDistrubutor) {
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:341:1: error: parse error before '}' token
+}
+^
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:29:12 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:32:56 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:167:17: error: use of undeclared identifer `paused'
+                paused = 1;
+                ^
+../src/main.xc:179:15: error: case not terminated with a break or return
+              case fromAcc :> tiltInput: {
+              ^~~~~~~~~~~~~~~~~~~~~~~~~~
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:33:14 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:167:17: error: use of undeclared identifer `paused'
+                paused = 1;
+                ^
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:34:08 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:34:35 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:34:47 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:35:25 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:36:28 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:37:20 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:40:50 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:42:13 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:44:40 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:181:11: error: case not terminated with a break or return
+          default : {
+          ^~~~~~~~~
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:44:53 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:46:43 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:47:22 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:166:11: error: case not terminated with a break or return
+          case fromAcc :> tiltInput: {
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:47:28 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:48:13 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:49:05 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:50:57 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:154:37: error: parse error before '{' token
+          case fromAcc :> tiltInput {
+                                    ^
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:51:07 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:51:35 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+15:51:41 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:54:16 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:54:33 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:55:00 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+15:55:26 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:56:33 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+15:57:34 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:154:17: error: parse error before ':>' token
+          case :> buttonInput: break;
+                ^
+../src/main.xc:159:11: error: parse error before "default"
+          default: continue;
+          ^
+../src/main.xc:165:3: error: parse error before "while"
+  while(running) {
+  ^
+../src/main.xc:171:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:173:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:176:15: error: parse error before "break"
+              break;
+              ^
+../src/main.xc:177:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:180:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:185:14: error: parse error before '{' token
+      select {
+             ^
+../src/main.xc:189:19: warning: type defaults to `int' in declaration of `paused' [-Wimplicit-int]
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:189:19: warning: data definition has no type or storage class [-Wunusual-code]
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:189:19: error: redefinition of 'paused'
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:146:7: note: previous definition of 'paused' was here
+  int paused = 0;
+      ^~~~~~
+../src/main.xc:190:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:192:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:195:15: error: parse error before "break"
+              break;
+              ^
+../src/main.xc:196:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:202:18: error: parse error before '{' token
+          select {
+                 ^
+../src/main.xc:206:19: error: parse error before '}' token
+                  }
+                  ^
+../src/main.xc:208:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:211:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:216:14: error: parse error before string constant
+      printf("Running iteration number %d\n", iterations);
+             ^
+../src/main.xc:216:7: error: cannot declare a function in local scope.
+      printf("Running iteration number %d\n", iterations);
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:216:7: warning: return type defaults to `int' [-Wreturn-type]
+      printf("Running iteration number %d\n", iterations);
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:219:7: error: parse error before "for"
+      for (int y = 0; y < IMHT; y++ ) {
+      ^
+../src/main.xc:219:23: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:219:23: warning: data definition has no type or storage class [-Wunusual-code]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:219:25: error: parse error before '<' token
+      for (int y = 0; y < IMHT; y++ ) {
+                        ^
+../src/main.xc:219:33: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:219:33: warning: data definition has no type or storage class [-Wunusual-code]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:219:33: error: redefinition of 'y'
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:219:23: note: previous definition of 'y' was here
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:261:11: error: parse error before string constant
+  printf( "\n%d processing round(s) completed...\n", iterations );
+          ^
+../src/main.xc:261:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "\n%d processing round(s) completed...\n", iterations );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:275:11: error: parse error before string constant
+  printf( "DataOutStream: Start...\n" );
+          ^
+../src/main.xc:275:3: error: cannot declare a function in local scope.
+  printf( "DataOutStream: Start...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:275:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "DataOutStream: Start...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:276:22: error: use of undeclared identifer `outfname'
+  res = _openoutpgm( outfname, IMWD, IMHT );
+                     ^
+../src/main.xc:276:3: warning: type defaults to `int' in declaration of `res' [-Wimplicit-int]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:276:3: warning: data definition has no type or storage class [-Wunusual-code]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:277:3: error: parse error before "if"
+  if( res ) {
+  ^
+../src/main.xc:279:5: error: parse error before "return"
+    return;
+    ^
+../src/main.xc:280:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:283:19: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:283:19: warning: data definition has no type or storage class [-Wunusual-code]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:283:19: error: redefinition of 'y'
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:219:33: note: previous definition of 'y' was here
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:283:21: error: parse error before '<' token
+  for( int y = 0; y < IMHT; y++ ) {
+                    ^
+../src/main.xc:283:29: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:283:29: warning: data definition has no type or storage class [-Wunusual-code]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:283:29: error: redefinition of 'y'
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:283:19: note: previous definition of 'y' was here
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:287:20: error: parse error before "line"
+    _writeoutline( line, IMWD );
+                   ^
+../src/main.xc:287:5: warning: return type defaults to `int' [-Wreturn-type]
+    _writeoutline( line, IMWD );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:288:13: error: parse error before string constant
+    printf( "DataOutStream: Line written...\n" );
+            ^
+../src/main.xc:288:5: error: cannot declare a function in local scope.
+    printf( "DataOutStream: Line written...\n" );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:288:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf( "DataOutStream: Line written...\n" );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:293:11: error: parse error before string constant
+  printf( "DataOutStream: Done...\n" );
+          ^
+../src/main.xc:293:3: error: cannot declare a function in local scope.
+  printf( "DataOutStream: Done...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:293:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "DataOutStream: Done...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:295:1: error: parse error before '}' token
+}
+^
+../src/main.xc:308:12: error: use of undeclared identifer `i2c'
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+           ^
+../src/main.xc:308:3: warning: type defaults to `int' in declaration of `result' [-Wimplicit-int]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:308:3: warning: data definition has no type or storage class [-Wunusual-code]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:308:16: error: trying to call interface function from something that is not an interface
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+           ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:309:3: error: parse error before "if"
+  if (result != I2C_REGOP_SUCCESS) {
+  ^
+../src/main.xc:311:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:315:3: error: parse error before "if"
+  if (result != I2C_REGOP_SUCCESS) {
+  ^
+../src/main.xc:317:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:325:5: error: parse error before '}' token
+    } while (!status_data & 0x08);
+    ^
+../src/main.xc:330:12: error: parse error before string constant
+    printf("TILTED::::%d\n ", tilted);
+           ^
+../src/main.xc:330:5: error: cannot declare a function in local scope.
+    printf("TILTED::::%d\n ", tilted);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:330:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf("TILTED::::%d\n ", tilted);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:331:12: error: parse error before string constant
+    printf("X-AXIS ::::%d\n ", x);
+           ^
+../src/main.xc:331:5: error: cannot declare a function in local scope.
+    printf("X-AXIS ::::%d\n ", x);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:331:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf("X-AXIS ::::%d\n ", x);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:337:9: warning: type defaults to `int' in declaration of `toDist' [-Wimplicit-int]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:337:9: warning: data definition has no type or storage class [-Wunusual-code]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:337:17: error: parse error before '<:' token
+        toDist <: 1;
+                ^
+../src/main.xc:343:13: warning: type defaults to `int' in declaration of `tilted' [-Wimplicit-int]
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:343:13: warning: data definition has no type or storage class [-Wunusual-code]
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:343:13: error: redefinition of 'tilted'
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:305:7: note: previous definition of 'tilted' was here
+  int tilted = 0;
+      ^~~~~~
+../src/main.xc:344:13: warning: type defaults to `int' in declaration of `toDist' [-Wimplicit-int]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:344:13: warning: data definition has no type or storage class [-Wunusual-code]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:344:13: error: redefinition of 'toDist'
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:337:9: note: previous definition of 'toDist' was here
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:344:21: error: parse error before '<:' token
+            toDist <: 0;
+                    ^
+../src/main.xc:368:1: error: parse error before "par"
+par {
+^
+../src/main.xc:370:17: error: parse error before "i2c"
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+                ^
+../src/main.xc:370:5: error: cannot declare a function in local scope.
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:370:5: warning: return type defaults to `int' [-Wreturn-type]
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:371:18: error: parse error before "infname"
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+                 ^
+../src/main.xc:371:5: error: cannot declare a function in local scope.
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:371:5: warning: return type defaults to `int' [-Wreturn-type]
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:372:19: error: parse error before "outfname"
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+                  ^
+../src/main.xc:372:5: error: cannot declare a function in local scope.
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:372:5: warning: return type defaults to `int' [-Wreturn-type]
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:373:17: error: parse error before "c_inIO"
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+                ^
+../src/main.xc:373:5: error: cannot declare a function in local scope.
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:373:5: warning: return type defaults to `int' [-Wreturn-type]
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:374:20: error: parse error before "buttons"
+    buttonListener(buttons, buttonsToDistributor);
+                   ^
+../src/main.xc:374:5: error: cannot declare a function in local scope.
+    buttonListener(buttons, buttonsToDistributor);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:374:5: warning: return type defaults to `int' [-Wreturn-type]
+    buttonListener(buttons, buttonsToDistributor);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:378:1: error: parse error before '}' token
+}
+^
+../src/main.xc:117:9: warning: unused variable `next_board' [-Wunused-variable]
+  uchar next_board[IMHT][IMWD];
+        ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:145:7: warning: unused variable `tiltInput' [-Wunused-variable]
+  int tiltInput = 0;
+      ^~~~~~~~~
+../src/main.xc:146:7: warning: unused variable `paused' [-Wunused-variable]
+  int paused = 0;
+      ^~~~~~
+../src/main.xc:147:7: warning: unused variable `iterations' [-Wunused-variable]
+  int iterations = 0;
+      ^~~~~~~~~~
+../src/main.xc:148:7: warning: unused variable `running' [-Wunused-variable]
+  int running = 1;
+      ^~~~~~~
+../src/main.xc:189:19: warning: unused variable `paused' [-Wunused-variable]
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:218:11: warning: unused variable `alive' [-Wunused-variable]
+      int alive;
+          ^~~~~
+../src/main.xc:219:23: warning: unused variable `y' [-Wunused-variable]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:219:33: warning: unused variable `y' [-Wunused-variable]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:272:9: warning: unused variable `line' [-Wunused-variable]
+  uchar line[ IMWD ];
+        ^~~~~~~~~~~~
+../src/main.xc:276:3: warning: unused variable `res' [-Wunused-variable]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:283:19: warning: unused variable `y' [-Wunused-variable]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:283:29: warning: unused variable `y' [-Wunused-variable]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:304:8: warning: unused variable `status_data' [-Wunused-variable]
+  char status_data = 0;
+       ^~~~~~~~~~~
+../src/main.xc:308:3: warning: unused variable `result' [-Wunused-variable]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:328:9: warning: unused variable `x' [-Wunused-variable]
+    int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
+        ^
+../src/main.xc:337:9: warning: unused variable `toDist' [-Wunused-variable]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:343:13: warning: unused variable `tilted' [-Wunused-variable]
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:344:13: warning: unused variable `toDist' [-Wunused-variable]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:363:6: warning: unused variable `infname' [-Wunused-variable]
+char infname[] = "test.pgm";     //put your input image path here
+     ^~~~~~~~~
+../src/main.xc:364:6: warning: unused variable `outfname' [-Wunused-variable]
+char outfname[] = "testout.pgm"; //put your output image path here
+     ^~~~~~~~~~
+../src/main.xc:365:6: warning: unused variable `c_inIO' [-Wunused-variable]
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+     ^~~~~~
+../src/main.xc:365:14: warning: unused variable `c_outIO' [-Wunused-variable]
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+             ^~~~~~~
+../src/main.xc:365:23: warning: unused variable `c_control' [-Wunused-variable]
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+                      ^~~~~~~~~
+../src/main.xc:366:6: warning: unused variable `buttonsToDistributor' [-Wunused-variable]
+chan buttonsToDistributor;
+     ^~~~~~~~~~~~~~~~~~~~
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:58:41 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:154:17: error: parse error before ':>' token
+          case :> buttonInput: {
+                ^
+../src/main.xc:157:11: error: parse error before "case"
+          case fromAcc :> tiltInput: {
+          ^
+../src/main.xc:161:11: error: parse error before "default"
+          default: {
+          ^
+../src/main.xc:164:7: error: parse error before '}' token
+      }
+      ^
+../src/main.xc:166:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:175:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:177:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:180:15: error: parse error before "break"
+              break;
+              ^
+../src/main.xc:181:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:184:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:189:14: error: parse error before '{' token
+      select {
+             ^
+../src/main.xc:193:19: warning: type defaults to `int' in declaration of `paused' [-Wimplicit-int]
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:193:19: warning: data definition has no type or storage class [-Wunusual-code]
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:193:19: error: redefinition of 'paused'
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:146:7: note: previous definition of 'paused' was here
+  int paused = 0;
+      ^~~~~~
+../src/main.xc:194:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:196:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:199:15: error: parse error before "break"
+              break;
+              ^
+../src/main.xc:200:11: error: parse error before '}' token
+          }
+          ^
+../src/main.xc:206:18: error: parse error before '{' token
+          select {
+                 ^
+../src/main.xc:210:19: error: parse error before '}' token
+                  }
+                  ^
+../src/main.xc:212:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:215:15: error: parse error before '}' token
+              }
+              ^
+../src/main.xc:220:14: error: parse error before string constant
+      printf("Running iteration number %d\n", iterations);
+             ^
+../src/main.xc:220:7: error: cannot declare a function in local scope.
+      printf("Running iteration number %d\n", iterations);
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:220:7: warning: return type defaults to `int' [-Wreturn-type]
+      printf("Running iteration number %d\n", iterations);
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:223:7: error: parse error before "for"
+      for (int y = 0; y < IMHT; y++ ) {
+      ^
+../src/main.xc:223:23: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:223:23: warning: data definition has no type or storage class [-Wunusual-code]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:223:25: error: parse error before '<' token
+      for (int y = 0; y < IMHT; y++ ) {
+                        ^
+../src/main.xc:223:33: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:223:33: warning: data definition has no type or storage class [-Wunusual-code]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:223:33: error: redefinition of 'y'
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:223:23: note: previous definition of 'y' was here
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:265:11: error: parse error before string constant
+  printf( "\n%d processing round(s) completed...\n", iterations );
+          ^
+../src/main.xc:265:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "\n%d processing round(s) completed...\n", iterations );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:279:11: error: parse error before string constant
+  printf( "DataOutStream: Start...\n" );
+          ^
+../src/main.xc:279:3: error: cannot declare a function in local scope.
+  printf( "DataOutStream: Start...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:279:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "DataOutStream: Start...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:280:22: error: use of undeclared identifer `outfname'
+  res = _openoutpgm( outfname, IMWD, IMHT );
+                     ^
+../src/main.xc:280:3: warning: type defaults to `int' in declaration of `res' [-Wimplicit-int]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:280:3: warning: data definition has no type or storage class [-Wunusual-code]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:281:3: error: parse error before "if"
+  if( res ) {
+  ^
+../src/main.xc:283:5: error: parse error before "return"
+    return;
+    ^
+../src/main.xc:284:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:287:19: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:287:19: warning: data definition has no type or storage class [-Wunusual-code]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:287:19: error: redefinition of 'y'
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:223:33: note: previous definition of 'y' was here
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:287:21: error: parse error before '<' token
+  for( int y = 0; y < IMHT; y++ ) {
+                    ^
+../src/main.xc:287:29: warning: type defaults to `int' in declaration of `y' [-Wimplicit-int]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:287:29: warning: data definition has no type or storage class [-Wunusual-code]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:287:29: error: redefinition of 'y'
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:287:19: note: previous definition of 'y' was here
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:291:20: error: parse error before "line"
+    _writeoutline( line, IMWD );
+                   ^
+../src/main.xc:291:5: warning: return type defaults to `int' [-Wreturn-type]
+    _writeoutline( line, IMWD );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:292:13: error: parse error before string constant
+    printf( "DataOutStream: Line written...\n" );
+            ^
+../src/main.xc:292:5: error: cannot declare a function in local scope.
+    printf( "DataOutStream: Line written...\n" );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:292:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf( "DataOutStream: Line written...\n" );
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:297:11: error: parse error before string constant
+  printf( "DataOutStream: Done...\n" );
+          ^
+../src/main.xc:297:3: error: cannot declare a function in local scope.
+  printf( "DataOutStream: Done...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:297:3: warning: return type defaults to `int' [-Wreturn-type]
+  printf( "DataOutStream: Done...\n" );
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:299:1: error: parse error before '}' token
+}
+^
+../src/main.xc:312:12: error: use of undeclared identifer `i2c'
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+           ^
+../src/main.xc:312:3: warning: type defaults to `int' in declaration of `result' [-Wimplicit-int]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:312:3: warning: data definition has no type or storage class [-Wunusual-code]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:312:16: error: trying to call interface function from something that is not an interface
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+           ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:313:3: error: parse error before "if"
+  if (result != I2C_REGOP_SUCCESS) {
+  ^
+../src/main.xc:315:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:319:3: error: parse error before "if"
+  if (result != I2C_REGOP_SUCCESS) {
+  ^
+../src/main.xc:321:3: error: parse error before '}' token
+  }
+  ^
+../src/main.xc:329:5: error: parse error before '}' token
+    } while (!status_data & 0x08);
+    ^
+../src/main.xc:334:12: error: parse error before string constant
+    printf("TILTED::::%d\n ", tilted);
+           ^
+../src/main.xc:334:5: error: cannot declare a function in local scope.
+    printf("TILTED::::%d\n ", tilted);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:334:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf("TILTED::::%d\n ", tilted);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:335:12: error: parse error before string constant
+    printf("X-AXIS ::::%d\n ", x);
+           ^
+../src/main.xc:335:5: error: cannot declare a function in local scope.
+    printf("X-AXIS ::::%d\n ", x);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:335:5: warning: return type defaults to `int' [-Wreturn-type]
+    printf("X-AXIS ::::%d\n ", x);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:341:9: warning: type defaults to `int' in declaration of `toDist' [-Wimplicit-int]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:341:9: warning: data definition has no type or storage class [-Wunusual-code]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:341:17: error: parse error before '<:' token
+        toDist <: 1;
+                ^
+../src/main.xc:347:13: warning: type defaults to `int' in declaration of `tilted' [-Wimplicit-int]
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:347:13: warning: data definition has no type or storage class [-Wunusual-code]
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:347:13: error: redefinition of 'tilted'
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:309:7: note: previous definition of 'tilted' was here
+  int tilted = 0;
+      ^~~~~~
+../src/main.xc:348:13: warning: type defaults to `int' in declaration of `toDist' [-Wimplicit-int]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:348:13: warning: data definition has no type or storage class [-Wunusual-code]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:348:13: error: redefinition of 'toDist'
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:341:9: note: previous definition of 'toDist' was here
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:348:21: error: parse error before '<:' token
+            toDist <: 0;
+                    ^
+../src/main.xc:372:1: error: parse error before "par"
+par {
+^
+../src/main.xc:374:17: error: parse error before "i2c"
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+                ^
+../src/main.xc:374:5: error: cannot declare a function in local scope.
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:374:5: warning: return type defaults to `int' [-Wreturn-type]
+    orientation(i2c[0],c_control);          //client thread reading orientation data
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:375:18: error: parse error before "infname"
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+                 ^
+../src/main.xc:375:5: error: cannot declare a function in local scope.
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:375:5: warning: return type defaults to `int' [-Wreturn-type]
+    DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:376:19: error: parse error before "outfname"
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+                  ^
+../src/main.xc:376:5: error: cannot declare a function in local scope.
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:376:5: warning: return type defaults to `int' [-Wreturn-type]
+    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:377:17: error: parse error before "c_inIO"
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+                ^
+../src/main.xc:377:5: error: cannot declare a function in local scope.
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:377:5: warning: return type defaults to `int' [-Wreturn-type]
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:378:20: error: parse error before "buttons"
+    buttonListener(buttons, buttonsToDistributor);
+                   ^
+../src/main.xc:378:5: error: cannot declare a function in local scope.
+    buttonListener(buttons, buttonsToDistributor);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:378:5: warning: return type defaults to `int' [-Wreturn-type]
+    buttonListener(buttons, buttonsToDistributor);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:382:1: error: parse error before '}' token
+}
+^
+../src/main.xc:117:9: warning: unused variable `next_board' [-Wunused-variable]
+  uchar next_board[IMHT][IMWD];
+        ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.xc:145:7: warning: unused variable `tiltInput' [-Wunused-variable]
+  int tiltInput = 0;
+      ^~~~~~~~~
+../src/main.xc:146:7: warning: unused variable `paused' [-Wunused-variable]
+  int paused = 0;
+      ^~~~~~
+../src/main.xc:147:7: warning: unused variable `iterations' [-Wunused-variable]
+  int iterations = 0;
+      ^~~~~~~~~~
+../src/main.xc:148:7: warning: unused variable `running' [-Wunused-variable]
+  int running = 1;
+      ^~~~~~~
+../src/main.xc:193:19: warning: unused variable `paused' [-Wunused-variable]
+                  paused = 1;
+                  ^~~~~~
+../src/main.xc:222:11: warning: unused variable `alive' [-Wunused-variable]
+      int alive;
+          ^~~~~
+../src/main.xc:223:23: warning: unused variable `y' [-Wunused-variable]
+      for (int y = 0; y < IMHT; y++ ) {
+                      ^
+../src/main.xc:223:33: warning: unused variable `y' [-Wunused-variable]
+      for (int y = 0; y < IMHT; y++ ) {
+                                ^
+../src/main.xc:276:9: warning: unused variable `line' [-Wunused-variable]
+  uchar line[ IMWD ];
+        ^~~~~~~~~~~~
+../src/main.xc:280:3: warning: unused variable `res' [-Wunused-variable]
+  res = _openoutpgm( outfname, IMWD, IMHT );
+  ^~~
+../src/main.xc:287:19: warning: unused variable `y' [-Wunused-variable]
+  for( int y = 0; y < IMHT; y++ ) {
+                  ^
+../src/main.xc:287:29: warning: unused variable `y' [-Wunused-variable]
+  for( int y = 0; y < IMHT; y++ ) {
+                            ^
+../src/main.xc:308:8: warning: unused variable `status_data' [-Wunused-variable]
+  char status_data = 0;
+       ^~~~~~~~~~~
+../src/main.xc:312:3: warning: unused variable `result' [-Wunused-variable]
+  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
+  ^~~~~~
+../src/main.xc:332:9: warning: unused variable `x' [-Wunused-variable]
+    int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
+        ^
+../src/main.xc:341:9: warning: unused variable `toDist' [-Wunused-variable]
+        toDist <: 1;
+        ^~~~~~
+../src/main.xc:347:13: warning: unused variable `tilted' [-Wunused-variable]
+            tilted = tilted - 1;
+            ^~~~~~
+../src/main.xc:348:13: warning: unused variable `toDist' [-Wunused-variable]
+            toDist <: 0;
+            ^~~~~~
+../src/main.xc:367:6: warning: unused variable `infname' [-Wunused-variable]
+char infname[] = "test.pgm";     //put your input image path here
+     ^~~~~~~~~
+../src/main.xc:368:6: warning: unused variable `outfname' [-Wunused-variable]
+char outfname[] = "testout.pgm"; //put your output image path here
+     ^~~~~~~~~~
+../src/main.xc:369:6: warning: unused variable `c_inIO' [-Wunused-variable]
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+     ^~~~~~
+../src/main.xc:369:14: warning: unused variable `c_outIO' [-Wunused-variable]
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+             ^~~~~~~
+../src/main.xc:369:23: warning: unused variable `c_control' [-Wunused-variable]
+chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
+                      ^~~~~~~~~
+../src/main.xc:370:6: warning: unused variable `buttonsToDistributor' [-Wunused-variable]
+chan buttonsToDistributor;
+     ^~~~~~~~~~~~~~~~~~~~
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:59:02 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+../src/main.xc:154:16: error: use of undeclared identifer `fromButton'
+          case fromButton :> buttonInput: {
+               ^
+xmake[1]: *** [.build/src/main.xc.pca.xml.decouple] Error 1
+xmake: *** [analyze] Error 2
+15:59:24 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Creating dependencies for main.xc
+Compiling main.xc
+Creating game_of_life.xe
+Build Complete
+16:00:01 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+16:00:23 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+16:01:36 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+16:04:25 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+16:05:00 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+16:05:19 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+16:06:01 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+xmake[1]: `bin//game_of_life.xe' is up to date.
+Build Complete
+16:07:09 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
+17:07:28 **** Incremental Build of configuration Default for project game_of_life ****
+xmake CONFIG=Default all 
+Checking build modules
+Using build modules: lib_i2c(3.0.0) lib_logging(2.0.0) lib_xassert(2.0.0)
+Analyzing main.xc
+Propagating analysis
+Creating dependencies for main.xc
+Compiling main.xc
+Compiling i2c_master.xc
+Creating game_of_life.xe
+Build Complete
