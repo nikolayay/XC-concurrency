@@ -142,12 +142,22 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   // 14 - SW1 - start processing
   // 13 - SW2 - export current state
   int buttonInput = 0;
+  int tiltInput = 0;
+  int paused = 0;
   int iterations = 0;
   int running = 1;
 
+  printf("\nPress SW1 to start processing.\n");
   while(buttonInput != 14) {
-      printf("\nPress SW1 to start processing.\n");
-      fromButtons :> buttonInput;
+
+      select {
+          case fromButtons :> buttonInput: {
+              break;
+          }
+          case fromAcc :> tiltInput: {
+              continue;
+          }
+      }
       printf("Wrong button dumbass!\n");
   }
 
@@ -159,19 +169,30 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
               if(buttonInput == 13) {
                   running = 0;
               }
-              continue;
+              break;
           }
-//          case fromBoard :> tiltInput: {
-//            if(tiltInput == 1) {
-//                running = 0;
-//            }
-//            if(tiltInput == 0) {
-//                running = 0;
-//            }
-//            continue;
-//                    }
+          case fromAcc :> tiltInput: {
+              if (tiltInput == 0) {
+                  printf("PAUSING\n");
+                  paused = 1;
+              }
+              break;
+          }
           default : {
               break;
+          }
+      }
+
+      while(paused) {
+          printf("Processing paused\n");
+          select {
+              case fromAcc :> tiltInput: {
+                  if(tiltInput == 1) {
+                      printf("UNPAUSING\n");
+                      paused = 0;
+                  }
+                  break;
+              }
           }
       }
 
@@ -290,16 +311,25 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
     //get new x-axis tilt value
     int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
 
-    printf("TILTED::::%d\n ", tilted);
-    printf("X-AXIS ::::%d\n ", x);
+//    printf("TILTED::::%d\n ", tilted);
+//    printf("X-AXIS ::::%d\n ", x);
 
     //send signal to distributor after first tilt
-    if (!tilted && x>30) {
+    if (!tilted) {
+      if (x>30) {
+        tilted = 1 - tilted;
+        toDist <: 1;
+      }
 
-        tilted = 1;
-        toDist <: tilted;
+    } else {
+        if (x<=-100) {
+            printf("SEDNDING SEX MESSAGE TO DISTRUBUTOR\n");
+            tilted = tilted - 1;
+            toDist <: 0;
+        }
 
     }
+
 
 
   }
