@@ -28,6 +28,7 @@ port p_sda = XS1_PORT_1F;
 
 // port to access xCore-200 buttons
 on tile[0] : in port buttons = XS1_PORT_4E;
+on tile[0] : out port leds = XS1_PORT_4F;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -99,6 +100,21 @@ int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     return count;
 }
 
+//DISPLAYS an LED pattern
+int showLEDs(out port p, chanend fromDistributor) {
+  int pattern; //1st bit...separate green LED
+               //2nd bit...blue LED
+               //3rd bit...green LED
+               //4th bit...red LED
+               // send 0 for nothing
+  while (1) {
+    fromDistributor :> pattern;   //receive new pattern from visualiser
+    p <: pattern;                //send pattern to LED port
+  }
+  return 0;
+}
+
+// LISTENS to BUTTON input
 void buttonListener(in port b, chanend toDistrubutor) {
     int r;
     while(1) {
@@ -109,20 +125,25 @@ void buttonListener(in port b, chanend toDistrubutor) {
 }
 
 
-void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons)
+void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
 {
   uchar val;
   int tilt;
   uchar board[IMHT][IMWD];
   uchar next_board[IMHT][IMWD];
 
+
+
   //Starting up and wait for tilting of the xCore-200 Explorer
   printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
   printf( "Waiting for Board Tilt...\n" );
   fromAcc :> tilt;
 
-  //Read in and do something with your image values..
+  // Read in and do something with your image values..
   printf( "Processing...\n" );
+
+  // Turn LED green.
+  toLeds <: 4;
   for( int j = 0; j < IMHT; j++ ) {   //go through all lines
     for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
 
@@ -137,6 +158,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 
     }
   }
+  toLeds <: 0;
 
   //iterate over board
   // 14 - SW1 - start processing
@@ -146,6 +168,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   int paused = 0;
   int iterations = 0;
   int running = 1;
+  int flicker = 0;
 
   printf("\nPress SW1 to start processing.\n");
   while(buttonInput != 14) {
@@ -174,6 +197,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           case fromAcc :> tiltInput: {
               if (tiltInput == 0) {
                   printf("PAUSING\n");
+                  toLeds <: 8;
                   paused = 1;
               }
               break;
@@ -195,7 +219,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
               }
           }
       }
-
+      flicker = !flicker;
+      toLeds <: flicker;
       iterations++;
       printf("Running iteration number %d\n", iterations);
 
@@ -235,6 +260,9 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   }
 
   // Send all pixels back.
+  // Set LED to blue on output.
+
+  toLeds <: 2;
   for (int y = 0; y < IMHT; y++ ) {
       for(int x = 0; x < IMWD; x++) {
           c_out <: (uchar)(next_board[x][y]);
@@ -242,6 +270,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   }
   // 0x00 - black
   // 0xFF - white
+  toLeds <: 16;
   printf( "\n%d processing round(s) completed...\n", iterations );
 }
 
@@ -344,14 +373,16 @@ char infname[] = "test.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
 chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
 chan buttonsToDistributor;
+chan ledsToDistributor;
 
 par {
     i2c_master(i2c, 1, p_scl, p_sda, 10);   //server thread providing orientation data
     orientation(i2c[0],c_control);          //client thread reading orientation data
     DataInStream(infname, c_inIO);          //thread to read in a PGM image
     DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
-    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor);//thread to coordinate work on image
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor);//thread to coordinate work on image
     buttonListener(buttons, buttonsToDistributor);
+    showLEDs(leds,ledsToDistributor);
   }
 
   return 0;
