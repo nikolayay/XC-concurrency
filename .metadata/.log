@@ -501,3 +501,727 @@ java.lang.NullPointerException
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+!SESSION 2018-11-11 13:31:42.255 -----------------------------------------------
+eclipse.buildId=I20080702-1800
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_GB
+Framework arguments:  -keyring /Users/tyler/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency -keyring /Users/tyler/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:32:51.882
+!MESSAGE Exception occurred while saving project preferences: /game_of_life/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/game_of_life/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:32:51.884
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/game_of_life/.settings'.
+
+!ENTRY org.eclipse.cdt.core 4 0 2018-11-11 13:32:51.892
+!MESSAGE Error: Exception occurred while saving project preferences: /game_of_life/.settings/org.eclipse.cdt.core.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception occurred while saving project preferences: /game_of_life/.settings/org.eclipse.cdt.core.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:607)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:32:51.894
+!MESSAGE Exception occurred while saving project preferences: /game_of_life/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/game_of_life/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:32:51.895
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/game_of_life/.settings'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-11-11 13:32:53.326
+!MESSAGE Indexed 'game_of_life' (2 sources, 47 headers) in 1.10 sec: 425 declarations; 1,351 references; 1 unresolved inclusions; 132 syntax errors; 67 unresolved names (3.64%)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:33:14.961
+!MESSAGE Exception occurred while saving project preferences: /lib_i2c/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_i2c/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:33:14.962
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_i2c/.settings'.
+
+!ENTRY org.eclipse.cdt.core 4 0 2018-11-11 13:33:14.963
+!MESSAGE Error: Exception occurred while saving project preferences: /lib_i2c/.settings/org.eclipse.cdt.core.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception occurred while saving project preferences: /lib_i2c/.settings/org.eclipse.cdt.core.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:607)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:33:14.964
+!MESSAGE Exception occurred while saving project preferences: /lib_i2c/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_i2c/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:33:14.964
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_i2c/.settings'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-11-11 13:33:15.583
+!MESSAGE Indexed 'lib_i2c' (5 sources, 45 headers) in 0.53 sec: 1,829 declarations; 2,489 references; 3 unresolved inclusions; 5 syntax errors; 139 unresolved names (3.12%)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:33:33.452
+!MESSAGE Exception occurred while saving project preferences: /lib_logging/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_logging/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:33:33.453
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_logging/.settings'.
+
+!ENTRY org.eclipse.cdt.core 4 0 2018-11-11 13:33:33.455
+!MESSAGE Error: Exception occurred while saving project preferences: /lib_logging/.settings/org.eclipse.cdt.core.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception occurred while saving project preferences: /lib_logging/.settings/org.eclipse.cdt.core.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:607)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:33:33.456
+!MESSAGE Exception occurred while saving project preferences: /lib_logging/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_logging/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:33:33.456
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_logging/.settings'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-11-11 13:33:33.631
+!MESSAGE Indexed 'lib_logging' (1 sources, 19 headers) in 0.08 sec: 423 declarations; 598 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:33:46.941
+!MESSAGE Exception occurred while saving project preferences: /lib_xassert/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_xassert/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:33:46.941
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_xassert/.settings'.
+
+!ENTRY org.eclipse.cdt.core 4 0 2018-11-11 13:33:46.942
+!MESSAGE Error: Exception occurred while saving project preferences: /lib_xassert/.settings/org.eclipse.cdt.core.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception occurred while saving project preferences: /lib_xassert/.settings/org.eclipse.cdt.core.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:607)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.utils.envvar.PrefsStorableEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.utils.envvar.StorableEnvironmentLoader.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 4 2018-11-11 13:33:46.944
+!MESSAGE Exception occurred while saving project preferences: /lib_xassert/.settings/org.eclipse.cdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_xassert/.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$1.run(ProjectPreferences.java:571)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:597)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalFlush(EclipsePreferences.java:471)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:350)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:353)
+	at org.eclipse.cdt.internal.core.envvar.UserDefinedEnvironmentSupplier.storeProjectEnvironment(Unknown Source)
+	at org.eclipse.cdt.internal.core.envvar.ContributedEnvironment.serialize(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$DesSerializationRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$CompositeWorkspaceRunnable.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(Unknown Source)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(Unknown Source)
+	at com.xmos.cdt.core.utils.LockedProjectUpdates.setWritableDescription(Unknown Source)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at com.xmos.cdt.core.projectinfosync.ProjectInfoSync.syncSettings(Unknown Source)
+	at com.xmos.cdt.core.xdeproject.XdeProjectCreatorExisting.create(Unknown Source)
+	at com.xmos.cdt.ui.wizards.xdeprojectexisting.XdeProjectExistingWizardPage$3.execute(Unknown Source)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(Unknown Source)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(Unknown Source)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2018-11-11 13:33:46.944
+!MESSAGE A resource already exists on disk '/Users/tyler/Documents/Uni/Year 2/Concurrent/Project/XC-concurrency/COMS20001/lib_xassert/.settings'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-11-11 13:33:47.031
+!MESSAGE Indexed 'lib_xassert' (1 sources, 1 headers) in 0.01 sec: 4 declarations; 36 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.opentype,Open Element,
+		Open an element in an Editor,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2dd2ff87,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.opentype,Open Element,
+		Open an element in an Editor,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2dd2ff87,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for ALT+CTRL+H:
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.call.hierarchy,Open Call Hierarchy,
+		Open the call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6a38e3d1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,cocoa,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.call.hierarchy,Open Call Hierarchy,
+		Open the call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6a38e3d1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for COMMAND+SHIFT+H:
+Binding(COMMAND+SHIFT+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.open.type.in.hierarchy,Open Type in Hierarchy,
+		Open a type in the type hierarchy view,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@28cf179c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(COMMAND+SHIFT+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.open.type.in.hierarchy,Open Type in Hierarchy,
+		Open a type in the type hierarchy view,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@28cf179c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for F4:
+Binding(F4,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.type.hierarchy,Open Type Hierarchy,
+		Open a type hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@bdda8a7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(F4,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.type.hierarchy,Open Type Hierarchy,
+		Open a type hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@bdda8a7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for COMMAND+G:
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.finddecl,Declaration,
+		Search for declarations of the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3149409c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.finddecl,Declaration,
+		Search for declarations of the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3149409c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1c421b0f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,cocoa,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1c421b0f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.721
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Open an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4ce18cec,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Open an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4ce18cec,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.722
+!MESSAGE A conflict occurred for ALT+COMMAND+I:
+Binding(ALT+COMMAND+I,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.include.browser,Open Include Browser,
+		Open an include browser on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2a9f8d47,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+COMMAND+I,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.include.browser,Open Include Browser,
+		Open an include browser on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2a9f8d47,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-11-11 13:34:42.722
+!MESSAGE A conflict occurred for COMMAND+SHIFT+G:
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.findrefs,References,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@51297528,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.findrefs,References,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@51297528,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)

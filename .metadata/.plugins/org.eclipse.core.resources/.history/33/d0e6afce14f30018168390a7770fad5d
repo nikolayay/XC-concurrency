@@ -1,9 +1,4 @@
 eclipse.preferences.version=1
-environment/project/com.xmos.cdt.toolchain.1035652785/XDE_BUILD/delimiter=\:
-environment/project/com.xmos.cdt.toolchain.1035652785/XDE_BUILD/operation=append
-environment/project/com.xmos.cdt.toolchain.1035652785/XDE_BUILD/value=true
-environment/project/com.xmos.cdt.toolchain.1035652785/append=true
-environment/project/com.xmos.cdt.toolchain.1035652785/appendContributed=true
 environment/project/com.xmos.cdt.toolchain.694605956/XDE_BUILD/delimiter=\:
 environment/project/com.xmos.cdt.toolchain.694605956/XDE_BUILD/operation=append
 environment/project/com.xmos.cdt.toolchain.694605956/XDE_BUILD/value=true
