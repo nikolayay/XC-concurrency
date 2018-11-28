@@ -311,19 +311,15 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
     //get new x-axis tilt value
     int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
 
-//    printf("TILTED::::%d\n ", tilted);
-//    printf("X-AXIS ::::%d\n ", x);
-
     //send signal to distributor after first tilt
     if (!tilted) {
       if (x>30) {
         tilted = 1 - tilted;
         toDist <: 1;
       }
-
+    // pause if tilted
     } else {
         if (x<=-100) {
-            printf("SEDNDING SEX MESSAGE TO DISTRUBUTOR\n");
             tilted = tilted - 1;
             toDist <: 0;
         }
