@@ -127,12 +127,14 @@ void buttonListener(in port b, chanend toDistrubutor) {
 
 void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
 {
-  uchar val;
   int tilt;
+  uchar val;
   uchar board[IMHT][IMWD];
   uchar next_board[IMHT][IMWD];
 
-
+  // Timer and its values
+  timer t;
+  uint32_t start_time , end_time;
 
   //Starting up and wait for tilting of the xCore-200 Explorer
   printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
@@ -142,7 +144,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   // Read in and do something with your image values..
   printf( "Processing...\n" );
 
-  // Turn LED green.
+  // Turn LED green for reading phase.
   toLeds <: 4;
   for( int j = 0; j < IMHT; j++ ) {   //go through all lines
     for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
@@ -160,7 +162,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   }
   toLeds <: 0;
 
-  //iterate over board
+  // iterate over board
   // 14 - SW1 - start processing
   // 13 - SW2 - export current state
   int buttonInput = 0;
@@ -184,8 +186,11 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       printf("Wrong button dumbass!\n");
   }
 
+  t :> start_time;
+  printf("Timer started\n");
+
   // Repeatedly run processing on a board iteration.
-  while(running) {
+  while(running && iterations < 100) {
       // control distributor
       select {
           case fromButtons :> buttonInput: {
@@ -224,6 +229,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       iterations++;
       printf("Running iteration number %d\n", iterations);
 
+
+
       int alive;
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
@@ -261,7 +268,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 
   // Send all pixels back.
   // Set LED to blue on output.
-
+  t :> end_time;
+  printf("Timer finished\n");
   toLeds <: 2;
   for (int y = 0; y < IMHT; y++ ) {
       for(int x = 0; x < IMWD; x++) {
@@ -271,7 +279,9 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   // 0x00 - black
   // 0xFF - white
   toLeds <: 16;
+
   printf( "\n%d processing round(s) completed...\n", iterations );
+  printf( "\nNumber of timer ticks elapsed: %u ms\n", (end_time-start_time) / 1000000 );
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

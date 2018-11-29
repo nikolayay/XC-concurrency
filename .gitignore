@@ -1,2 +1,10 @@
 
 COMS20001/\.metadata/\.plugins/org\.eclipse\.cdt\.core/
+
+COMS20001/game_of_life/\.build/
+
+COMS20001/\.metadata/
+
+COMS20001/game_of_life/testout\.pgm
+
+COMS20001/game_of_life/bin/
