@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="isRegEx"/>
-		<item value="old_board" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="sending"/>
+			<item value="dist"/>
 			<item value="board"/>
 			<item value="Line"/>
 			<item value="xadd"/>
 			<item value="yadd"/>
 			<item value="BOARD_HEIGHT"/>
 			<item value="BOARD_WIDTH"/>
-			<item value="c_control"/>
-			<item value="distributor"/>
 		</list>
 		<list key="replacehistory">
 			<item value="old_board"/>
@@ -27,9 +27,9 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="287" key="DIALOG_WIDTH"/>
+		<item value="291" key="DIALOG_WIDTH"/>
 		<item value="1|.SF NS Text|13.0|0|COCOA|1|.SFNSText" key="DIALOG_FONT_NAME"/>
-		<item value="417" key="DIALOG_HEIGHT"/>
+		<item value="419" key="DIALOG_HEIGHT"/>
 		<item value="891" key="DIALOG_X_ORIGIN"/>
 		<item value="-9" key="DIALOG_Y_ORIGIN"/>
 	</section>
