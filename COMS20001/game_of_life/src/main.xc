@@ -32,6 +32,13 @@ on tile[0] : in port buttons = XS1_PORT_4E;
 // port to access xCore-200 leds
 on tile[0] : out port leds = XS1_PORT_4F;
 
+
+// Interfaces
+typedef interface i {
+    void worker ( int x , int y );
+} i;
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //
 // Read Image from PGM file from path infname[] to channel c_out
@@ -142,8 +149,17 @@ void buttonListener(in port b, chanend toDistrubutor) {
     }
 }
 
+void worker(server i distributor_worker_interface) {
 
-void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
+}
+
+
+void distributor(chanend c_in,
+                 chanend c_out,
+                 chanend fromAcc,
+                 chanend fromButtons,
+                 chanend toLeds,
+                 client i distributor_worker_interface)
 {
   int tilt;
   uchar val;
@@ -428,11 +444,7 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
             tilted = tilted - 1;
             toDist <: 0;
         }
-
     }
-
-
-
   }
 }
 
@@ -451,12 +463,15 @@ chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
 chan buttonsToDistributor;
 chan ledsToDistributor;
 
+interface i distributor_worker_interface;
+
 par {
     i2c_master(i2c, 1, p_scl, p_sda, 10);   //server thread providing orientation data
     orientation(i2c[0],c_control);          //client thread reading orientation data
     DataInStream(infname, c_inIO);          //thread to read in a PGM image
     DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
-    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor);//thread to coordinate work on image
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, distributor_worker_interface);//thread to coordinate work on image
+    worker(distributor_worker_interface);
     buttonListener(buttons, buttonsToDistributor);
     showLEDs(leds,ledsToDistributor);
   }
