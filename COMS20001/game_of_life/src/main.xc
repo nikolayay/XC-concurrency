@@ -112,39 +112,37 @@ void worker(server i distributor_worker_interface) {
                 printf("Echoing (%d, %d)\n", x, y);
                 break;
             case distributor_worker_interface.processCoordinates(uchar board[][IMWD], uchar next_board[][IMWD], int x, int y):
-                    // local copy of array for count_alive()
-                    //uchar b[3][IMWD];
-                    //memcpy(b, board, sizeof(b));
-                    uchar b[IMHT][IMWD];
-                    memcpy(b, board, sizeof(b));
+                // local copy of array for count_alive()
+                //uchar b[3][IMWD];
+                //memcpy(b, board, sizeof(b));
+                uchar b[IMHT][IMWD];
+                memcpy(b, board, sizeof(b));
 
-                    // 1.Count neighbours.
-                    int alive = count_alive(b, x, y);
+                // 1.Count neighbours.
+                int alive = count_alive(b, x, y);
 
-                    // 2. Apply rules. Build a new board (next_board) and send message to display.
-                    if ( board[x][y] )
-                    {
-                        if ( (alive > 3) || ( alive < 2 ) ) {
-                            // DEAD
-                            next_board[x][y] = 0x00;
-                        } else {
-                            // ALIVE
-                            next_board[x][y] = 0xFF;
-                        }
-                     } else {
-                        if ( alive == 3 ) {
-                            // ALIVE
-                            next_board[x][y] = 0xFF;
-                        } else {
-                            // DEAD
-                            next_board[x][y] = 0x00;
-                        }
-                     }
+                // 2. Apply rules. Build a new board (next_board) and send message to display.
+                if ( board[x][y] ) {
+                    if ( (alive > 3) || ( alive < 2 ) ) {
+                        // DEAD
+                        next_board[x][y] = 0x00;
+                    } else {
+                        // ALIVE
+                        next_board[x][y] = 0xFF;
+                    }
+                 } else {
+                    if ( alive == 3 ) {
+                        // ALIVE
+                        next_board[x][y] = 0xFF;
+                    } else {
+                        // DEAD
+                        next_board[x][y] = 0x00;
+                    }
+                 }
 
-               break;
+                 break;
         }
     }
-
 }
 
 
