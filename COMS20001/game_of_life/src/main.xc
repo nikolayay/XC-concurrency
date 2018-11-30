@@ -21,6 +21,7 @@ on tile[0] : out port leds = XS1_PORT_4F;
 // Interfaces
 typedef interface i {
     void echo ( int x , int y );
+    void processCoordinates (uchar board[][IMWD], uchar next_board[][IMWD], int x , int y );
 } i;
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,12 @@ int y_add (int i, int a) {
 int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     int k, l, count;
     count = 0;
+
+    // (i-1, j-1) | (i-1, j) | (i-1, j+1)
+    // (i, j-1)   | (i, j)   | (i, j+1)
+    // (i+1, j-1) | (i+1, j) | (i+1, j+1)
+
+
     /* go around the cell */
     for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
         /* only count if at least one of k,l isn't zero */
@@ -59,7 +66,7 @@ int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     return count;
 }
 
-int total_alive(uchar board[IMWD][IMHT]) {
+int total_alive(uchar board[][IMWD]) {
     int count = 0;
 
     for( int y = 0; y < IMHT; y++ ) {   //go through all lines
@@ -99,6 +106,44 @@ void buttonListener(in port b, chanend toDistrubutor) {
 }
 
 void worker(server i distributor_worker_interface) {
+    while(1) {
+        select {
+            case distributor_worker_interface.echo(int x, int y):
+                printf("Echoing (%d, %d)\n", x, y);
+                break;
+            case distributor_worker_interface.processCoordinates(uchar board[][IMWD], uchar next_board[][IMWD], int x, int y):
+                    // local copy of array for count_alive()
+                    //uchar b[3][IMWD];
+                    //memcpy(b, board, sizeof(b));
+                    uchar b[IMHT][IMWD];
+                    memcpy(b, board, sizeof(b));
+
+                    // 1.Count neighbours.
+                    int alive = count_alive(b, x, y);
+
+                    // 2. Apply rules. Build a new board (next_board) and send message to display.
+                    if ( board[x][y] )
+                    {
+                        if ( (alive > 3) || ( alive < 2 ) ) {
+                            // DEAD
+                            next_board[x][y] = 0x00;
+                        } else {
+                            // ALIVE
+                            next_board[x][y] = 0xFF;
+                        }
+                     } else {
+                        if ( alive == 3 ) {
+                            // ALIVE
+                            next_board[x][y] = 0xFF;
+                        } else {
+                            // DEAD
+                            next_board[x][y] = 0x00;
+                        }
+                     }
+
+               break;
+        }
+    }
 
 }
 
@@ -241,42 +286,23 @@ void distributor(chanend c_in,
 
       iterations++;
 
-      // printf("Running iteration number %d, iteration);
+//      printf("Running iteration number %d\n", iterations);
 
       // ----- PROCESSING BEGINS -----
+
+
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
-              // 1.Count neighbours.
-              int alive = count_alive(board, x, y);
-
-              // 2. Apply rules. Build a new board (next_board) and send message to display.
-              if ( board[x][y] )
-              {
-                  if ( (alive > 3) || ( alive < 2 ) ) {
-                      // DEAD
-                      next_board[x][y] = 0x00;
-                  } else {
-                      // ALIVE
-                      next_board[x][y] = 0xFF;
-                  }
-               } else {
-                  if ( alive == 3 ) {
-                      // ALIVE
-                      next_board[x][y] = 0xFF;
-                  } else {
-                      // DEAD
-                      next_board[x][y] = 0x00;
-                  }
-               }
-            }
+              distributor_worker_interface.processCoordinates(board, next_board, x,y);
           }
+      }
 
       // Copy board for next iteration.
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
               board[x][y] = next_board[x][y];
           }
-        }
+      }
 
       // ----- PROCESSING FINISHES -----
   }
@@ -296,7 +322,7 @@ void distributor(chanend c_in,
   toLeds <: 16;
 
   // Timings
-  uint32_t total_time, processing_time, idle_time;
+  uint32_t total_time, processing_time;
 
   total_time = (end_time-start_time) / 1000000;
   processing_time = total_time - total_idle_time;
