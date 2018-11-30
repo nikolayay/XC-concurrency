@@ -100,6 +100,21 @@ int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     return count;
 }
 
+int total_alive(uchar board[IMWD][IMHT]) {
+    int count = 0;
+
+    for( int y = 0; y < IMHT; y++ ) {   //go through all lines
+        for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
+           if (board[x][y] != 0) {
+               count+=1;
+           }
+        }
+      }
+
+    return count;
+
+}
+
 //DISPLAYS an LED pattern
 int showLEDs(out port p, chanend fromDistributor) {
   int pattern; //1st bit...separate green LED
@@ -125,6 +140,8 @@ void buttonListener(in port b, chanend toDistrubutor) {
 }
 
 
+
+
 void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
 {
   int tilt;
@@ -134,7 +151,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 
   // Timer and its values
   timer t;
-  uint32_t start_time , end_time;
+  uint32_t start_time , end_time, paused_start_time, paused_end_time;
+  uint32_t total_idle_time = 0;
 
   //Starting up and wait for tilting of the xCore-200 Explorer
   printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
@@ -202,8 +220,25 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           case fromAcc :> tiltInput: {
               if (tiltInput == 0) {
                   printf("PAUSING\n");
+                  // pause the timer accordingly
+                  t :> paused_start_time;
+                  printf("Timer paused\n");
+
+                  // switch leds to red
                   toLeds <: 8;
+
+                  // enter paused state
                   paused = 1;
+
+                  // Most recent pause_start time - start time = time elasped since beginning.
+                  uint32_t total_time = (paused_start_time - start_time) / 1000000;
+
+                  printf("\n-------------INTERMEDIATE STATUS REPORT-----------------\n");
+                  printf( "\n%d processing round(s) completed...\n", iterations );
+                  printf( "\nTotal time elapsed since start: %u ms\n", total_time );
+                  printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
+                  printf("\n--------------------------------------------------------\n");
+
               }
               break;
           }
@@ -214,22 +249,32 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 
       while(paused) {
           printf("Processing paused\n");
+
           select {
               case fromAcc :> tiltInput: {
                   if(tiltInput == 1) {
                       printf("UNPAUSING\n");
+
+                      // resume timer
+                      t :> paused_end_time;
+                      // Update total paused time after each potential pause
+                      total_idle_time += ((paused_end_time - paused_start_time) / 1000000);
+                      printf("Timer resumed\n");
+
+                      // exit paused state
                       paused = 0;
                   }
                   break;
               }
           }
       }
+
+
+
       flicker = !flicker;
       toLeds <: flicker;
       iterations++;
       printf("Running iteration number %d\n", iterations);
-
-
 
       int alive;
       for (int y = 0; y < IMHT; y++ ) {
@@ -280,8 +325,25 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   // 0xFF - white
   toLeds <: 16;
 
+  // Timings
+  uint32_t total_time, processing_time, idle_time;
+
+  total_time = (end_time-start_time) / 1000000;
+  idle_time = (paused_end_time-paused_start_time) / 1000000;
+  processing_time = total_time - total_idle_time;
+
+
+  printf("\n-------------FINAL STATUS REPORT-----------------\n");
   printf( "\n%d processing round(s) completed...\n", iterations );
-  printf( "\nNumber of timer ticks elapsed: %u ms\n", (end_time-start_time) / 1000000 );
+  printf( "\nTotal time elapsed: %u ms\n", total_time );
+  printf( "\nTime spent processing: %u ms\n", processing_time);
+  printf( "\nTotal IDLE TIME elapsed: %u ms\n", total_idle_time );
+  printf( "\nTime spent on pause: %u ms\n", idle_time);
+  printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
+  printf("\n---------------------------------------------------\n");
+
+
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
