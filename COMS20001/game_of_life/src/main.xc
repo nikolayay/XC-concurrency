@@ -28,6 +28,8 @@ port p_sda = XS1_PORT_1F;
 
 // port to access xCore-200 buttons
 on tile[0] : in port buttons = XS1_PORT_4E;
+
+// port to access xCore-200 leds
 on tile[0] : out port leds = XS1_PORT_4F;
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -49,18 +51,19 @@ void DataInStream(char infname[], chanend c_out)
   }
 
   //Read image line-by-line and send byte by byte to channel c_out
+  printf("DataInStream: Reading input file...\n");
   for( int y = 0; y < IMHT; y++ ) {
     _readinline( line, IMWD );
     for( int x = 0; x < IMWD; x++ ) {
       c_out <: line[ x ];
-      printf( "-%4.1d ", line[ x ] ); //show image values
+//      printf( "-%4.1d ", line[ x ] ); //show image values
     }
-    printf( "\n" );
+//    printf( "\n" );
   }
+  printf( "DataInStream: Done...\n" );
 
   //Close PGM image file
   _closeinpgm();
-  printf( "DataInStream: Done...\n" );
   return;
 }
 
@@ -140,8 +143,6 @@ void buttonListener(in port b, chanend toDistrubutor) {
 }
 
 
-
-
 void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
 {
   int tilt;
@@ -204,8 +205,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       printf("Wrong button dumbass!\n");
   }
 
+  // Overall timer starts
   t :> start_time;
-  printf("Timer started\n");
 
   // Repeatedly run processing on a board iteration.
   while(running && iterations < 100) {
@@ -220,7 +221,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           case fromAcc :> tiltInput: {
               if (tiltInput == 0) {
                   printf("PAUSING\n");
-                  // pause the timer accordingly
+                  // Paused timer starts
                   t :> paused_start_time;
                   printf("Timer paused\n");
 
@@ -230,7 +231,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                   // enter paused state
                   paused = 1;
 
-                  // Most recent pause_start time - start time = time elasped since beginning.
+                  // Difference between first timer and paused timer = time elasped since beginning.
                   uint32_t total_time = (paused_start_time - start_time) / 1000000;
 
                   printf("\n-------------INTERMEDIATE STATUS REPORT-----------------\n");
@@ -255,9 +256,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                   if(tiltInput == 1) {
                       printf("UNPAUSING\n");
 
-                      // resume timer
+                      // Get the paused time snapshot and calculate total time in pause
                       t :> paused_end_time;
-                      // Update total paused time after each potential pause
                       total_idle_time += ((paused_end_time - paused_start_time) / 1000000);
                       printf("Timer resumed\n");
 
@@ -270,19 +270,21 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       }
 
 
-
+      // flips green led on/off each iteration
       flicker = !flicker;
       toLeds <: flicker;
-      iterations++;
-      printf("Running iteration number %d\n", iterations);
 
-      int alive;
+      iterations++;
+
+      // printf("Running iteration number %d, iteration);
+
+      // ----- PROCESSING BEGINS -----
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
               // 1.Count neighbours.
-              alive = count_alive(board, x, y);
+              int alive = count_alive(board, x, y);
 
-              // 2. Apply rules. Build a new board and send message to display.
+              // 2. Apply rules. Build a new board (next_board) and send message to display.
               if ( board[x][y] )
               {
                   if ( (alive > 3) || ( alive < 2 ) ) {
@@ -303,13 +305,18 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                }
             }
           }
+
       // Copy board for next iteration.
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
               board[x][y] = next_board[x][y];
           }
         }
+
+      // ----- PROCESSING FINISHES -----
   }
+
+
 
   // Send all pixels back.
   // Set LED to blue on output.
@@ -342,8 +349,6 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
   printf("\n---------------------------------------------------\n");
 
-
-
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -370,7 +375,6 @@ void DataOutStream(char outfname[], chanend c_in)
       c_in :> line[x];
     }
     _writeoutline( line, IMWD );
-    printf( "DataOutStream: Line written...\n" );
   }
 
   //Close the PGM image
