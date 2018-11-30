@@ -6,63 +6,23 @@
 #include <stdio.h>
 #include "pgmIO.h"
 #include "i2c.h"
+#include "dataIO.xc"
 
 #define  IMHT 16                  //image height
 #define  IMWD 16                  //image width
 
-typedef unsigned char uchar;      //using uchar as shorthand
-
-port p_scl = XS1_PORT_1E;         //interface ports to orientation
-port p_sda = XS1_PORT_1F;
-
-#define FXOS8700EQ_I2C_ADDR 0x1E  //register addresses for orientation
-#define FXOS8700EQ_XYZ_DATA_CFG_REG 0x0E
-#define FXOS8700EQ_CTRL_REG_1 0x2A
-#define FXOS8700EQ_DR_STATUS 0x0
-#define FXOS8700EQ_OUT_X_MSB 0x1
-#define FXOS8700EQ_OUT_X_LSB 0x2
-#define FXOS8700EQ_OUT_Y_MSB 0x3
-#define FXOS8700EQ_OUT_Y_LSB 0x4
-#define FXOS8700EQ_OUT_Z_MSB 0x5
-#define FXOS8700EQ_OUT_Z_LSB 0x6
 
 // port to access xCore-200 buttons
 on tile[0] : in port buttons = XS1_PORT_4E;
+
+// port to access xCore-200 leds
 on tile[0] : out port leds = XS1_PORT_4F;
 
-/////////////////////////////////////////////////////////////////////////////////////////
-//
-// Read Image from PGM file from path infname[] to channel c_out
-//
-/////////////////////////////////////////////////////////////////////////////////////////
-void DataInStream(char infname[], chanend c_out)
-{
-  int res;
-  uchar line[ IMWD ];
-  printf( "DataInStream: Start...\n" );
-
-  //Open PGM file
-  res = _openinpgm( infname, IMWD, IMHT );
-  if( res ) {
-    printf( "DataInStream: Error openening %s\n.", infname );
-    return;
-  }
-
-  //Read image line-by-line and send byte by byte to channel c_out
-  for( int y = 0; y < IMHT; y++ ) {
-    _readinline( line, IMWD );
-    for( int x = 0; x < IMWD; x++ ) {
-      c_out <: line[ x ];
-      printf( "-%4.1d ", line[ x ] ); //show image values
-    }
-    printf( "\n" );
-  }
-
-  //Close PGM image file
-  _closeinpgm();
-  printf( "DataInStream: Done...\n" );
-  return;
-}
+// Interfaces
+typedef interface i {
+    void echo ( int x , int y );
+    void processCoordinates (uchar board[][IMWD], uchar next_board[][IMWD], int x , int y );
+} i;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -91,6 +51,12 @@ int y_add (int i, int a) {
 int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     int k, l, count;
     count = 0;
+
+    // (i-1, j-1) | (i-1, j) | (i-1, j+1)
+    // (i, j-1)   | (i, j)   | (i, j+1)
+    // (i+1, j-1) | (i+1, j) | (i+1, j+1)
+
+
     /* go around the cell */
     for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
         /* only count if at least one of k,l isn't zero */
@@ -100,7 +66,7 @@ int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     return count;
 }
 
-int total_alive(uchar board[IMWD][IMHT]) {
+int total_alive(uchar board[][IMWD]) {
     int count = 0;
 
     for( int y = 0; y < IMHT; y++ ) {   //go through all lines
@@ -139,10 +105,55 @@ void buttonListener(in port b, chanend toDistrubutor) {
     }
 }
 
+void worker(server i distributor_worker_interface) {
+    while(1) {
+        select {
+            case distributor_worker_interface.echo(int x, int y):
+                printf("Echoing (%d, %d)\n", x, y);
+                break;
+            case distributor_worker_interface.processCoordinates(uchar board[][IMWD], uchar next_board[][IMWD], int x, int y):
+                    // local copy of array for count_alive()
+                    //uchar b[3][IMWD];
+                    //memcpy(b, board, sizeof(b));
+                    uchar b[IMHT][IMWD];
+                    memcpy(b, board, sizeof(b));
+
+                    // 1.Count neighbours.
+                    int alive = count_alive(b, x, y);
+
+                    // 2. Apply rules. Build a new board (next_board) and send message to display.
+                    if ( board[x][y] )
+                    {
+                        if ( (alive > 3) || ( alive < 2 ) ) {
+                            // DEAD
+                            next_board[x][y] = 0x00;
+                        } else {
+                            // ALIVE
+                            next_board[x][y] = 0xFF;
+                        }
+                     } else {
+                        if ( alive == 3 ) {
+                            // ALIVE
+                            next_board[x][y] = 0xFF;
+                        } else {
+                            // DEAD
+                            next_board[x][y] = 0x00;
+                        }
+                     }
+
+               break;
+        }
+    }
+
+}
 
 
-
-void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
+void distributor(chanend c_in,
+                 chanend c_out,
+                 chanend fromAcc,
+                 chanend fromButtons,
+                 chanend toLeds,
+                 client i distributor_worker_interface)
 {
   int tilt;
   uchar val;
@@ -204,8 +215,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       printf("Wrong button dumbass!\n");
   }
 
+  // Overall timer starts
   t :> start_time;
-  printf("Timer started\n");
 
   // Repeatedly run processing on a board iteration.
   while(running && iterations < 100) {
@@ -220,7 +231,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           case fromAcc :> tiltInput: {
               if (tiltInput == 0) {
                   printf("PAUSING\n");
-                  // pause the timer accordingly
+                  // Paused timer starts
                   t :> paused_start_time;
                   printf("Timer paused\n");
 
@@ -230,7 +241,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                   // enter paused state
                   paused = 1;
 
-                  // Most recent pause_start time - start time = time elasped since beginning.
+                  // Difference between first timer and paused timer = time elasped since beginning.
                   uint32_t total_time = (paused_start_time - start_time) / 1000000;
 
                   printf("\n-------------INTERMEDIATE STATUS REPORT-----------------\n");
@@ -255,9 +266,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                   if(tiltInput == 1) {
                       printf("UNPAUSING\n");
 
-                      // resume timer
+                      // Get the paused time snapshot and calculate total time in pause
                       t :> paused_end_time;
-                      // Update total paused time after each potential pause
                       total_idle_time += ((paused_end_time - paused_start_time) / 1000000);
                       printf("Timer resumed\n");
 
@@ -270,45 +280,31 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       }
 
 
-
+      // flips green led on/off each iteration
       flicker = !flicker;
       toLeds <: flicker;
-      iterations++;
-      printf("Running iteration number %d\n", iterations);
 
-      int alive;
+      iterations++;
+
+//      printf("Running iteration number %d\n", iterations);
+
+      // ----- PROCESSING BEGINS -----
+
+
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
-              // 1.Count neighbours.
-              alive = count_alive(board, x, y);
-
-              // 2. Apply rules. Build a new board and send message to display.
-              if ( board[x][y] )
-              {
-                  if ( (alive > 3) || ( alive < 2 ) ) {
-                      // DEAD
-                      next_board[x][y] = 0x00;
-                  } else {
-                      // ALIVE
-                      next_board[x][y] = 0xFF;
-                  }
-               } else {
-                  if ( alive == 3 ) {
-                      // ALIVE
-                      next_board[x][y] = 0xFF;
-                  } else {
-                      // DEAD
-                      next_board[x][y] = 0x00;
-                  }
-               }
-            }
+              distributor_worker_interface.processCoordinates(board, next_board, x,y);
           }
+      }
+
       // Copy board for next iteration.
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
               board[x][y] = next_board[x][y];
           }
-        }
+      }
+
+      // ----- PROCESSING FINISHES -----
   }
 
   // Send all pixels back.
@@ -326,10 +322,9 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   toLeds <: 16;
 
   // Timings
-  uint32_t total_time, processing_time, idle_time;
+  uint32_t total_time, processing_time;
 
   total_time = (end_time-start_time) / 1000000;
-  idle_time = (paused_end_time-paused_start_time) / 1000000;
   processing_time = total_time - total_idle_time;
 
 
@@ -338,98 +333,9 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   printf( "\nTotal time elapsed: %u ms\n", total_time );
   printf( "\nTime spent processing: %u ms\n", processing_time);
   printf( "\nTotal IDLE TIME elapsed: %u ms\n", total_idle_time );
-  printf( "\nTime spent on pause: %u ms\n", idle_time);
   printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
   printf("\n---------------------------------------------------\n");
 
-
-
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////
-//
-// Write pixel stream from channel c_in to PGM image file
-//
-/////////////////////////////////////////////////////////////////////////////////////////
-void DataOutStream(char outfname[], chanend c_in)
-{
-  int res;
-  uchar line[ IMWD ];
-
-  //Open PGM file
-  printf( "DataOutStream: Start...\n" );
-  res = _openoutpgm( outfname, IMWD, IMHT );
-  if( res ) {
-    printf( "DataOutStream: Error opening %s\n.", outfname );
-    return;
-  }
-
-  //Compile each line of the image and write the image line-by-line
-  for( int y = 0; y < IMHT; y++ ) {
-    for( int x = 0; x < IMWD; x++ ) {
-      c_in :> line[x];
-    }
-    _writeoutline( line, IMWD );
-    printf( "DataOutStream: Line written...\n" );
-  }
-
-  //Close the PGM image
-  _closeoutpgm();
-  printf( "DataOutStream: Done...\n" );
-  return;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////
-//
-// Initialise and  read orientation, send first tilt event to channel
-//
-/////////////////////////////////////////////////////////////////////////////////////////
-void orientation( client interface i2c_master_if i2c, chanend toDist) {
-  i2c_regop_res_t result;
-  char status_data = 0;
-  int tilted = 0;
-
-  // Configure FXOS8700EQ
-  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_XYZ_DATA_CFG_REG, 0x01);
-  if (result != I2C_REGOP_SUCCESS) {
-    printf("I2C write reg failed\n");
-  }
-  
-  // Enable FXOS8700EQ
-  result = i2c.write_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_CTRL_REG_1, 0x01);
-  if (result != I2C_REGOP_SUCCESS) {
-    printf("I2C write reg failed\n");
-  }
-
-  //Probe the orientation x-axis forever
-  while (1) {
-
-    //check until new orientation data is available
-    do {
-      status_data = i2c.read_reg(FXOS8700EQ_I2C_ADDR, FXOS8700EQ_DR_STATUS, result);
-    } while (!status_data & 0x08);
-
-    //get new x-axis tilt value
-    int x = read_acceleration(i2c, FXOS8700EQ_OUT_X_MSB);
-
-    //send signal to distributor after first tilt
-    if (!tilted) {
-      if (x>30) {
-        tilted = 1 - tilted;
-        toDist <: 1;
-      }
-    // pause if tilted
-    } else {
-        if (x<=-100) {
-            tilted = tilted - 1;
-            toDist <: 0;
-        }
-
-    }
-
-
-
-  }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -437,6 +343,8 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
 // Orchestrate concurrent system and start up all threads
 //
 /////////////////////////////////////////////////////////////////////////////////////////
+
+
 int main(void) {
 
 i2c_master_if i2c[1];               //interface to orientation
@@ -447,12 +355,15 @@ chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
 chan buttonsToDistributor;
 chan ledsToDistributor;
 
+interface i distributor_worker_interface;
+
 par {
     i2c_master(i2c, 1, p_scl, p_sda, 10);   //server thread providing orientation data
     orientation(i2c[0],c_control);          //client thread reading orientation data
     DataInStream(infname, c_inIO);          //thread to read in a PGM image
     DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
-    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor);//thread to coordinate work on image
+    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, distributor_worker_interface);//thread to coordinate work on image
+    worker(distributor_worker_interface);
     buttonListener(buttons, buttonsToDistributor);
     showLEDs(leds,ledsToDistributor);
   }
