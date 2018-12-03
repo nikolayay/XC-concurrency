@@ -259,12 +259,15 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   while(running && iterations < 100) {
       // control distributor
       select {
+          // stop processing
           case fromButtons :> buttonInput: {
               if(buttonInput == 13) {
                   running = 0;
               }
               break;
           }
+
+          // pause processing
           case fromAcc :> tiltInput: {
               if (tiltInput == 0) {
                   printf("PAUSING\n");
@@ -295,6 +298,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           }
       }
 
+      // paused state
       while(paused) {
           printf("Processing paused\n");
 
@@ -317,16 +321,15 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           }
       }
 
+      // processing state
       flicker = !flicker;
       toLeds <: flicker;
       iterations++;
-//      printf("Running iteration number %d\n", iterations);
 
-      int alive;
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
               // 1.Count neighbours.
-              alive = count_alive(board, x, y);
+              int alive = count_alive(board, x, y);
 
               // 2. Apply rules. Build a new board and send message to display.
               if ( board[x][y] )
@@ -347,14 +350,15 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                       next_board[x][y] = 0x00;
                   }
                }
-            }
           }
+      }
+
       // Copy board for next iteration.
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
               board[x][y] = next_board[x][y];
           }
-        }
+      }
   }
 
   // Send all pixels back.
