@@ -180,7 +180,30 @@ void worker(server interface i workerI, int worker_id) {
             }
         }
     }
+}
 
+unsigned char calculateNextCellState(uchar board[IMHT][IMWD], int x, int y) {
+    // 1.Count neighbours.
+    int alive = count_alive(board, x, y);
+
+    // 2. Apply rules. Build a new board and send message to display.
+    if ( board[x][y] ) {
+        if ( (alive > 3) || ( alive < 2 ) ) {
+            // DEAD
+            return 0x00;
+        } else {
+            // ALIVE
+            return 0xFF;
+        }
+     } else {
+        if ( alive == 3 ) {
+            // ALIVE
+            return 0xFF;
+        } else {
+            // DEAD
+           return 0x00;
+        }
+     }
 
 }
 
@@ -328,28 +351,10 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 
       for (int y = 0; y < IMHT; y++ ) {
           for(int x = 0; x < IMWD; x++) {
-              // 1.Count neighbours.
-              int alive = count_alive(board, x, y);
+              uchar nextCellState = calculateNextCellState(board, x, y);
 
-              // 2. Apply rules. Build a new board and send message to display.
-              if ( board[x][y] )
-              {
-                  if ( (alive > 3) || ( alive < 2 ) ) {
-                      // DEAD
-                      next_board[x][y] = 0x00;
-                  } else {
-                      // ALIVE
-                      next_board[x][y] = 0xFF;
-                  }
-               } else {
-                  if ( alive == 3 ) {
-                      // ALIVE
-                      next_board[x][y] = 0xFF;
-                  } else {
-                      // DEAD
-                      next_board[x][y] = 0x00;
-                  }
-               }
+              next_board[x][y] = nextCellState;
+
           }
       }
 
