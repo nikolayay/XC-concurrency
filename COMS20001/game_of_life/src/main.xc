@@ -9,11 +9,15 @@
 
 #define  IMHT 16                  //image height
 #define  IMWD 16                  //image width
+#define  NUM_WORKERS 4
+
+char infname[] = "test.pgm";     //put your input image path here
+char outfname[] = "testout.pgm"; //put your output image path here
 
 typedef unsigned char uchar;      //using uchar as shorthand
 
-port p_scl = XS1_PORT_1E;         //interface ports to orientation
-port p_sda = XS1_PORT_1F;
+on tile[0]: port p_scl = XS1_PORT_1E;         //interface ports to orientation
+on tile[0]: port p_sda = XS1_PORT_1F;
 
 #define FXOS8700EQ_I2C_ADDR 0x1E  //register addresses for orientation
 #define FXOS8700EQ_XYZ_DATA_CFG_REG 0x0E
@@ -53,9 +57,9 @@ void DataInStream(char infname[], chanend c_out)
     _readinline( line, IMWD );
     for( int x = 0; x < IMWD; x++ ) {
       c_out <: line[ x ];
-      printf( "-%4.1d ", line[ x ] ); //show image values
+//      printf( "-%4.1d ", line[ x ] ); //show image values
     }
-    printf( "\n" );
+//    printf( "\n" );
   }
 
   //Close PGM image file
@@ -116,7 +120,8 @@ int total_alive(uchar board[IMWD][IMHT]) {
 }
 
 //DISPLAYS an LED pattern
-int showLEDs(out port p, chanend fromDistributor) {
+//[[combinable]]
+void showLEDs(out port p, chanend fromDistributor) {
   int pattern; //1st bit...separate green LED
                //2nd bit...blue LED
                //3rd bit...green LED
@@ -126,10 +131,10 @@ int showLEDs(out port p, chanend fromDistributor) {
     fromDistributor :> pattern;   //receive new pattern from visualiser
     p <: pattern;                //send pattern to LED port
   }
-  return 0;
 }
 
 // LISTENS to BUTTON input
+//[[combinable]]
 void buttonListener(in port b, chanend toDistrubutor) {
     int r;
     while(1) {
@@ -139,12 +144,50 @@ void buttonListener(in port b, chanend toDistrubutor) {
     }
 }
 
+typedef interface i {
+    void send(int id);
+    void receive(int id);
+} i;
+
+void worker(server interface i workerI, int worker_id) {
+    uchar array[IMHT/NUM_WORKERS+2][IMWD];
+    uchar output[IMHT/NUM_WORKERS+2][IMWD];
+
+    int receive = 0;
+
+    while(1){
+    select{
+        case workerI.send(int id):
+            printf("Worker %d, sending data away\n", id);
+            break;
+
+        case workerI.receive(int id):
+                printf("Worker %d, recieving data\n", id);
+            break;
+        }
+
+        if (receive){
+            continue;
+        }
+
+        // calculate
+        for (int y = 0; y<IMHT/NUM_WORKERS;y++){
+            for (int x = 0;x<IMWD;x++){
+                uchar result=0;
+                for (int i = 0; i < 8; i++){
+                }
+                output[y][x] = result;
+            }
+        }
+    }
 
 
+}
 
-void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds)
+
+void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds, client interface i workerI[NUM_WORKERS])
 {
-  int tilt;
+//  int tilt;
   uchar val;
   uchar board[IMHT][IMWD];
   uchar next_board[IMHT][IMWD];
@@ -155,12 +198,17 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   uint32_t total_idle_time = 0;
 
   //Starting up and wait for tilting of the xCore-200 Explorer
-  printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
-  printf( "Waiting for Board Tilt...\n" );
-  fromAcc :> tilt;
+//  printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
+//  printf( "Waiting for Board Tilt...\n" );
+//  fromAcc :> tilt;
 
   // Read in and do something with your image values..
-  printf( "Processing...\n" );
+//  printf( "Processing...\n" );
+
+  par (int i =0; i<NUM_WORKERS; i++) {
+      workerI[i].receive(i);
+  }
+
 
   // Turn LED green for reading phase.
   toLeds <: 4;
@@ -269,12 +317,10 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
           }
       }
 
-
-
       flicker = !flicker;
       toLeds <: flicker;
       iterations++;
-      printf("Running iteration number %d\n", iterations);
+//      printf("Running iteration number %d\n", iterations);
 
       int alive;
       for (int y = 0; y < IMHT; y++ ) {
@@ -338,7 +384,6 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   printf( "\nTotal time elapsed: %u ms\n", total_time );
   printf( "\nTime spent processing: %u ms\n", processing_time);
   printf( "\nTotal IDLE TIME elapsed: %u ms\n", total_idle_time );
-  printf( "\nTime spent on pause: %u ms\n", idle_time);
   printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
   printf("\n---------------------------------------------------\n");
 
@@ -370,7 +415,7 @@ void DataOutStream(char outfname[], chanend c_in)
       c_in :> line[x];
     }
     _writeoutline( line, IMWD );
-    printf( "DataOutStream: Line written...\n" );
+//    printf( "DataOutStream: Line written...\n" );
   }
 
   //Close the PGM image
@@ -440,21 +485,25 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
 int main(void) {
 
 i2c_master_if i2c[1];               //interface to orientation
+interface i workerI[NUM_WORKERS];
 
-char infname[] = "test.pgm";     //put your input image path here
-char outfname[] = "testout.pgm"; //put your output image path here
 chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
 chan buttonsToDistributor;
 chan ledsToDistributor;
 
 par {
-    i2c_master(i2c, 1, p_scl, p_sda, 10);   //server thread providing orientation data
-    orientation(i2c[0],c_control);          //client thread reading orientation data
-    DataInStream(infname, c_inIO);          //thread to read in a PGM image
-    DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
-    distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor);//thread to coordinate work on image
-    buttonListener(buttons, buttonsToDistributor);
-    showLEDs(leds,ledsToDistributor);
+    on tile [0]:i2c_master(i2c, 1, p_scl, p_sda, 10);   //server thread providing orientation data
+    on tile [0]:orientation(i2c[0],c_control);          //client thread reading orientation data
+    on tile [0]:DataInStream(infname, c_inIO);          //thread to read in a PGM image
+    on tile [0]:DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
+    on tile [0]:buttonListener(buttons, buttonsToDistributor);
+    on tile [0]:showLEDs(leds,ledsToDistributor);
+
+    on tile [1]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
+    on tile [1]:worker(workerI[0],0);
+    on tile [1]:worker(workerI[1],1);
+    on tile [0]:worker(workerI[2],2);
+    on tile [0]:worker(workerI[3],3);
   }
 
   return 0;
