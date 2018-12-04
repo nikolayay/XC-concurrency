@@ -144,69 +144,72 @@ void buttonListener(in port b, chanend toDistrubutor) {
     }
 }
 
-typedef interface i {
-    void send(int id);
-    void receive(int id);
-} i;
-
-void worker(server interface i workerI, int worker_id) {
-    uchar array[IMHT/NUM_WORKERS+2][IMWD];
-    uchar output[IMHT/NUM_WORKERS+2][IMWD];
-
-    int receive = 0;
-
-    while(1){
-    select{
-        case workerI.send(int id):
-            printf("Worker %d, sending data away\n", id);
-            break;
-
-        case workerI.receive(int id):
-                printf("Worker %d, recieving data\n", id);
-            break;
-        }
-
-        if (receive){
-            continue;
-        }
-
-        // calculate
-        for (int y = 0; y<IMHT/NUM_WORKERS;y++){
-            for (int x = 0;x<IMWD;x++){
-                uchar result=0;
-                for (int i = 0; i < 8; i++){
-                }
-                output[y][x] = result;
-            }
-        }
-    }
-}
-
 unsigned char calculateNextCellState(uchar board[IMHT][IMWD], int x, int y) {
     // 1.Count neighbours.
     int alive = count_alive(board, x, y);
+
+    uchar bits;
 
     // 2. Apply rules. Build a new board and send message to display.
     if ( board[x][y] ) {
         if ( (alive > 3) || ( alive < 2 ) ) {
             // DEAD
-            return 0x00;
+            bits = 0x00;
         } else {
             // ALIVE
-            return 0xFF;
+            bits = 0xFF;
         }
      } else {
         if ( alive == 3 ) {
             // ALIVE
-            return 0xFF;
+            bits = 0xFF;
         } else {
             // DEAD
-           return 0x00;
+            bits = 0x00;
         }
      }
 
+    return bits;
 }
 
+
+typedef interface i {
+    void get(uchar board[IMHT][IMWD], int id);
+    void process(uchar board[IMHT][IMWD], int id);
+} i;
+
+void worker(server interface i workerI, int worker_id) {
+    uchar localBoard[IMHT][IMWD];
+    uchar processed[IMHT][IMWD];
+
+    int processing = 0;
+
+    while(1) {
+        select {
+            case workerI.get(uchar board[IMHT][IMWD], int id):
+                // return the processed board
+                memcpy(board,processed,IMHT*IMWD*sizeof(uchar));
+                processing = 0;
+                break;
+
+            case workerI.process(uchar board[IMHT][IMWD], int id):
+                // make a local copy
+                memcpy(localBoard,board,IMHT * IMWD * sizeof(uchar));
+                processing = 1;
+                break;
+            }
+
+        if (processing) {
+            // iterate over board
+            for (int y = 0; y < IMHT; y++){
+                for (int x = 0; x < IMWD; x++){
+                    uchar nextCellState = calculateNextCellState(localBoard, x, y);
+                    processed[x][y] = nextCellState;
+                }
+            }
+        }
+    }
+}
 
 void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds, client interface i workerI[NUM_WORKERS])
 {
@@ -228,21 +231,14 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   // Read in and do something with your image values..
 //  printf( "Processing...\n" );
 
-  par (int i =0; i<NUM_WORKERS; i++) {
-      workerI[i].receive(i);
-  }
-
 
   // Turn LED green for reading phase.
   toLeds <: 4;
   for( int j = 0; j < IMHT; j++ ) {   //go through all lines
     for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
 
-        // (i-1, j-1) | (i-1, j) | (i-1, j+1)
-        // (i, j-1)   | (i, j)   | (i, j+1)
-        // (i+1, j-1) | (i+1, j) | (i+1, j+1)
-
-        c_in :> val;//read the pixel value
+        //read the pixel value
+        c_in :> val;
 
         // populate board in local memory
         board[i][j] = val;
@@ -251,7 +247,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   }
   toLeds <: 0;
 
-  // iterate over board
+
   // 14 - SW1 - start processing
   // 13 - SW2 - export current state
   int buttonInput = 0;
@@ -349,21 +345,23 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       toLeds <: flicker;
       iterations++;
 
-      for (int y = 0; y < IMHT; y++ ) {
-          for(int x = 0; x < IMWD; x++) {
-              uchar nextCellState = calculateNextCellState(board, x, y);
 
-              next_board[x][y] = nextCellState;
+      workerI[0].process(board, 0);
+      workerI[0].get(board, 0);
 
-          }
-      }
-
-      // Copy board for next iteration.
-      for (int y = 0; y < IMHT; y++ ) {
-          for(int x = 0; x < IMWD; x++) {
-              board[x][y] = next_board[x][y];
-          }
-      }
+//      for (int y = 0; y < IMHT; y++ ) {
+//          for(int x = 0; x < IMWD; x++) {
+//              uchar nextCellState = calculateNextCellState(board, x, y);
+//              next_board[x][y] = nextCellState;
+//          }
+//      }
+//
+//      // Copy board for next iteration.
+//      for (int y = 0; y < IMHT; y++ ) {
+//          for(int x = 0; x < IMWD; x++) {
+//              board[x][y] = next_board[x][y];
+//          }
+//      }
   }
 
   // Send all pixels back.
