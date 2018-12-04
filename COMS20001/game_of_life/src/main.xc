@@ -7,11 +7,13 @@
 #include "pgmIO.h"
 #include "i2c.h"
 
-#define  IMHT 16                  //image height
-#define  IMWD 16                  //image width
-#define  NUM_WORKERS 1
+#define  IMHT 64                 //image height
+#define  IMWD 64                  //image width
+#define  NUM_WORKERS 2
+#define  FARMHT IMHT/NUM_WORKERS
+#define  ITERATIONS 100
 
-char infname[] = "test.pgm";     //put your input image path here
+char infname[] = "64x64.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
 
 typedef unsigned char uchar;      //using uchar as shorthand
@@ -87,29 +89,30 @@ int x_add (int i, int a) {
 /* add to a height index, wrapping around */
 int y_add (int i, int a) {
     i += a;
-    while (i < 0) i += IMHT;
-    while (i >= IMHT) i -= IMHT;
+    while (i < 0) i += FARMHT;
+    while (i >= FARMHT) i -= FARMHT;
     return i;
 }
 
-int count_alive(uchar board[IMWD][IMHT], int i, int j) {
+int count_alive(uchar board[FARMHT][IMWD], int x, int y) {
     int k, l, count;
     count = 0;
     /* go around the cell */
     for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
         /* only count if at least one of k,l isn't zero */
         if (k || l) {
-            if (board[x_add(i,k)][y_add(j,l)]) count++;
+            if (board[y_add(y,k)][x_add(x,l)]) count++;
         }
     return count;
 }
 
-int total_alive(uchar board[NUM_WORKERS][IMWD][IMHT]) {
+// arg 1 (board) matches board type from distrubutor function
+int total_alive(uchar board[NUM_WORKERS][FARMHT + 2][IMHT]) {
     int count = 0;
     for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
-        for( int y = 0; y < IMHT; y++ ) {   //go through all lines
+        for( int y = 0; y < FARMHT; y++ ) {   //go through all lines
             for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
-               if (board[workerId][x][y] != 0) {
+               if (board[workerId][y][x] != 0) {
                    count+=1;
                }
             }
@@ -144,14 +147,14 @@ void buttonListener(in port b, chanend toDistrubutor) {
     }
 }
 
-unsigned char calculateNextCellState(uchar board[IMHT][IMWD], int x, int y) {
+unsigned char calculateNextCellState(uchar board[FARMHT][IMWD], int x, int y) {
     // 1.Count neighbours.
     int alive = count_alive(board, x, y);
 
     uchar bits;
 
     // 2. Apply rules. Build a new board and send message to display.
-    if ( board[x][y] ) {
+    if ( board[y][x] ) {
         if ( (alive > 3) || ( alive < 2 ) ) {
             // DEAD
             bits = 0x00;
@@ -174,37 +177,38 @@ unsigned char calculateNextCellState(uchar board[IMHT][IMWD], int x, int y) {
 
 
 typedef interface i {
-    void get(uchar board[IMHT][IMWD], int id);
-    void process(uchar board[IMHT][IMWD], int id);
+    void get(uchar board[FARMHT][IMWD], int id);
+    void process(uchar board[FARMHT][IMWD], int id);
 } i;
 
 void worker(server interface i workerI, int worker_id) {
-    uchar localBoard[IMHT][IMWD];
-    uchar processed[IMHT][IMWD];
+    uchar localBoard[FARMHT][IMWD];
+    uchar processed[FARMHT][IMWD];
 
     int processing = 0;
 
     while(1) {
         select {
-            case workerI.get(uchar board[IMHT][IMWD], int id):
+            case workerI.get(uchar board[FARMHT][IMWD], int id):
                 // return the processed board
-                memcpy(board,processed,IMHT*IMWD*sizeof(uchar));
+                memcpy(board,processed,FARMHT*IMWD*sizeof(uchar));
                 processing = 0;
                 break;
 
-            case workerI.process(uchar board[IMHT][IMWD], int id):
+            case workerI.process(uchar board[FARMHT][IMWD], int id):
                 // make a local copy
-                memcpy(localBoard,board,IMHT * IMWD * sizeof(uchar));
+                memcpy(localBoard,board,FARMHT * IMWD * sizeof(uchar));
                 processing = 1;
                 break;
             }
 
         if (processing) {
             // iterate over board
-            for (int y = 0; y < IMHT; y++){
+            for (int y = 0; y < FARMHT; y++){
+                printf("Worker %d: Processing row %d\n", worker_id, y);
                 for (int x = 0; x < IMWD; x++){
                     uchar nextCellState = calculateNextCellState(localBoard, x, y);
-                    processed[x][y] = nextCellState;
+                    processed[y][x] = nextCellState;
                 }
             }
         }
@@ -217,7 +221,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   uchar val;
 
   // 3D array that stores area of board per worker
-  uchar board[NUM_WORKERS][IMHT][IMWD];
+  // + 2 to accomodate ghost rows
+  uchar board[NUM_WORKERS][FARMHT + 2][IMWD];
 
   // Timer and its values
   timer t;
@@ -228,16 +233,18 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   // Turn LED green for reading phase.
   toLeds <: 4;
 
+  printf("Worker farm height: %d\n", FARMHT);
+
   // Copy the board from the read module
   for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
-      for( int j = 0; j < IMHT; j++ ) {     //go through all lines
-          for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
+      for( int y = 0; y < FARMHT; y++ ) {     //go through all lines
+          for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
 
               //read the pixel value
               c_in :> val;
 
               // populate board in local memory
-              board[workerId][i][j] = val;
+              board[workerId][y][x] = val;
 
           }
       }
@@ -273,7 +280,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   printf("Timer started\n");
 
   // Repeatedly run processing on a board iteration.
-  while(running && iterations < 100) {
+  while(running && iterations < ITERATIONS) {
       // control distributor
       select {
           // stop processing
@@ -344,17 +351,25 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       iterations++;
 
       for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
-          workerI[0].process(board[workerId], workerId);
+          int nextWorkerId = ((workerId + 1) + NUM_WORKERS) % NUM_WORKERS;
+          int prevWorkerId = ((workerId - 1) + NUM_WORKERS) % NUM_WORKERS;
 
+          for (int x = 0; x < IMWD; x++) {
+              // populate top ghost row
+              board[workerId][FARMHT+1][x] = board[prevWorkerId][FARMHT-1][x];
+
+              // populate top ghost row
+              board[workerId][FARMHT][x] = board[nextWorkerId][0][x];
+          }
       }
 
       for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
-          workerI[0].get(board[workerId], workerId);
+          workerI[workerId].process(board[workerId], workerId);
       }
 
-
-
-
+      for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+          workerI[workerId].get(board[workerId], workerId);
+      }
 
   }
 
@@ -364,9 +379,9 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   printf("Timer finished\n");
   toLeds <: 2;
   for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
-      for (int y = 0; y < IMHT; y++ ) {
+      for (int y = 0; y < FARMHT; y++ ) {
             for(int x = 0; x < IMWD; x++) {
-                c_out <: (uchar)(board[workerId][x][y]);
+                c_out <: (uchar)(board[workerId][y][x]);
             }
         }
   }
@@ -501,7 +516,7 @@ par {
 
     on tile [1]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
     on tile [1]:worker(workerI[0],0);
-//    on tile [1]:worker(workerI[1],1);
+    on tile [1]:worker(workerI[1],1);
 //    on tile [0]:worker(workerI[2],2);
 //    on tile [0]:worker(workerI[3],3);
   }
