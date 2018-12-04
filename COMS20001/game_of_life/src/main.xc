@@ -9,7 +9,9 @@
 
 #define  IMHT 64                 //image height
 #define  IMWD 64                  //image width
-#define  NUM_WORKERS 2
+
+// Must be power of 2
+#define  NUM_WORKERS 4
 #define  FARMHT IMHT/NUM_WORKERS
 #define  ITERATIONS 100
 
@@ -72,55 +74,9 @@ void DataInStream(char infname[], chanend c_out)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
-// Start your implementation by changing this function to implement the game of life
-// by farming out parts of the image to worker threads who implement it...
-// Currently the function just inverts the image
+// LEDS and Buttons
 //
 /////////////////////////////////////////////////////////////////////////////////////////
-
-/* add to a width index, wrapping around like a cylinder */
-int x_add (int i, int a) {
-    i += a;
-    while (i < 0) i += IMWD;
-    while (i >= IMWD) i -= IMWD;
-    return i;
-}
-
-/* add to a height index, wrapping around */
-int y_add (int i, int a) {
-    i += a;
-    while (i < 0) i += FARMHT;
-    while (i >= FARMHT) i -= FARMHT;
-    return i;
-}
-
-int count_alive(uchar board[FARMHT][IMWD], int x, int y) {
-    int k, l, count;
-    count = 0;
-    /* go around the cell */
-    for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
-        /* only count if at least one of k,l isn't zero */
-        if (k || l) {
-            if (board[y_add(y,k)][x_add(x,l)]) count++;
-        }
-    return count;
-}
-
-// arg 1 (board) matches board type from distrubutor function
-int total_alive(uchar board[NUM_WORKERS][FARMHT + 2][IMHT]) {
-    int count = 0;
-    for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
-        for( int y = 0; y < FARMHT; y++ ) {   //go through all lines
-            for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
-               if (board[workerId][y][x] != 0) {
-                   count+=1;
-               }
-            }
-        }
-    }
-    return count;
-
-}
 
 //DISPLAYS an LED pattern
 //[[combinable]]
@@ -147,7 +103,62 @@ void buttonListener(in port b, chanend toDistrubutor) {
     }
 }
 
-unsigned char calculateNextCellState(uchar board[FARMHT][IMWD], int x, int y) {
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+// Start your implementation by changing this function to implement the game of life
+// by farming out parts of the image to worker threads who implement it...
+// Currently the function just inverts the image
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/* add to a width index, wrapping around like a cylinder */
+int x_add (int i, int a) {
+    i += a;
+    while (i < 0) i += IMWD;
+    while (i >= IMWD) i -= IMWD;
+    return i;
+}
+
+/* add to a height index, wrapping around */
+int y_add (int i, int a) {
+    int FARMHT_GHOSTS = FARMHT + 2;
+    i += a;
+    while (i < 0) i += FARMHT_GHOSTS;
+    while (i >= FARMHT_GHOSTS) i -= FARMHT_GHOSTS;
+    return i;
+}
+
+// arg 1 (board) matches board type from distrubutor function
+int total_alive(uchar board[NUM_WORKERS][FARMHT + 2][IMHT]) {
+    int count = 0;
+    for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+        for( int y = 0; y < FARMHT; y++ ) {   //go through all lines
+            for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
+               if (board[workerId][y][x] != 0) {
+                   count+=1;
+               }
+            }
+        }
+    }
+    return count;
+}
+
+// + 2 for ghost rows
+int count_alive(uchar board[FARMHT+2][IMWD], int x, int y) {
+    int k, l, count;
+    count = 0;
+    /* go around the cell */
+    for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
+        /* only count if at least one of k,l isn't zero */
+        if (k || l) {
+            if (board[y_add(y,k)][x_add(x,l)]) count++;
+        }
+    return count;
+}
+
+
+// + 2 for ghost rows
+unsigned char calculateNextCellState(uchar board[FARMHT + 2][IMWD], int x, int y) {
     // 1.Count neighbours.
     int alive = count_alive(board, x, y);
 
@@ -177,27 +188,27 @@ unsigned char calculateNextCellState(uchar board[FARMHT][IMWD], int x, int y) {
 
 
 typedef interface i {
-    void get(uchar board[FARMHT][IMWD], int id);
-    void process(uchar board[FARMHT][IMWD], int id);
+    void get(uchar board[FARMHT + 2][IMWD], int id);
+    void process(uchar board[FARMHT + 2][IMWD], int id);
 } i;
 
 void worker(server interface i workerI, int worker_id) {
-    uchar localBoard[FARMHT][IMWD];
-    uchar processed[FARMHT][IMWD];
+    uchar localBoard[FARMHT + 2][IMWD];
+    uchar processed[FARMHT + 2][IMWD];
 
     int processing = 0;
 
     while(1) {
         select {
-            case workerI.get(uchar board[FARMHT][IMWD], int id):
+            case workerI.get(uchar board[FARMHT + 2][IMWD], int id):
                 // return the processed board
-                memcpy(board,processed,FARMHT*IMWD*sizeof(uchar));
+                memcpy(board,processed,(FARMHT + 2)*IMWD*sizeof(uchar));
                 processing = 0;
                 break;
 
-            case workerI.process(uchar board[FARMHT][IMWD], int id):
+            case workerI.process(uchar board[FARMHT + 2][IMWD], int id):
                 // make a local copy
-                memcpy(localBoard,board,FARMHT * IMWD * sizeof(uchar));
+                memcpy(localBoard,board,(FARMHT + 2) * IMWD * sizeof(uchar));
                 processing = 1;
                 break;
             }
@@ -205,7 +216,7 @@ void worker(server interface i workerI, int worker_id) {
         if (processing) {
             // iterate over board
             for (int y = 0; y < FARMHT; y++){
-                printf("Worker %d: Processing row %d\n", worker_id, y);
+//                printf("Worker %d: Processing row %d\n", worker_id, y);
                 for (int x = 0; x < IMWD; x++){
                     uchar nextCellState = calculateNextCellState(localBoard, x, y);
                     processed[y][x] = nextCellState;
@@ -358,8 +369,8 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
               // populate top ghost row
               board[workerId][FARMHT+1][x] = board[prevWorkerId][FARMHT-1][x];
 
-              // populate top ghost row
-              board[workerId][FARMHT][x] = board[nextWorkerId][0][x];
+              // populate bottom ghost row
+              board[workerId][FARMHT][x]   = board[nextWorkerId][0][x];
           }
       }
 
@@ -517,8 +528,8 @@ par {
     on tile [1]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
     on tile [1]:worker(workerI[0],0);
     on tile [1]:worker(workerI[1],1);
-//    on tile [0]:worker(workerI[2],2);
-//    on tile [0]:worker(workerI[3],3);
+    on tile [0]:worker(workerI[2],2);
+    on tile [0]:worker(workerI[3],3);
   }
 
   return 0;
