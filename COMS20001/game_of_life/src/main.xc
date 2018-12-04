@@ -9,7 +9,7 @@
 
 #define  IMHT 16                  //image height
 #define  IMWD 16                  //image width
-#define  NUM_WORKERS 4
+#define  NUM_WORKERS 1
 
 char infname[] = "test.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
@@ -104,17 +104,17 @@ int count_alive(uchar board[IMWD][IMHT], int i, int j) {
     return count;
 }
 
-int total_alive(uchar board[IMWD][IMHT]) {
+int total_alive(uchar board[NUM_WORKERS][IMWD][IMHT]) {
     int count = 0;
-
-    for( int y = 0; y < IMHT; y++ ) {   //go through all lines
-        for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
-           if (board[x][y] != 0) {
-               count+=1;
-           }
+    for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+        for( int y = 0; y < IMHT; y++ ) {   //go through all lines
+            for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
+               if (board[workerId][x][y] != 0) {
+                   count+=1;
+               }
+            }
         }
-      }
-
+    }
     return count;
 
 }
@@ -213,37 +213,36 @@ void worker(server interface i workerI, int worker_id) {
 
 void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButtons, chanend toLeds, client interface i workerI[NUM_WORKERS])
 {
-//  int tilt;
+
   uchar val;
-  uchar board[IMHT][IMWD];
+
+  // 3D array that stores area of board per worker
+  uchar board[NUM_WORKERS][IMHT][IMWD];
 
   // Timer and its values
   timer t;
   uint32_t start_time , end_time, paused_start_time, paused_end_time;
   uint32_t total_idle_time = 0;
 
-  //Starting up and wait for tilting of the xCore-200 Explorer
-//  printf( "ProcessImage: Start, size = %dx%d\n", IMHT, IMWD );
-//  printf( "Waiting for Board Tilt...\n" );
-//  fromAcc :> tilt;
-
-  // Read in and do something with your image values..
-//  printf( "Processing...\n" );
-
 
   // Turn LED green for reading phase.
   toLeds <: 4;
-  for( int j = 0; j < IMHT; j++ ) {   //go through all lines
-    for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
 
-        //read the pixel value
-        c_in :> val;
+  // Copy the board from the read module
+  for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+      for( int j = 0; j < IMHT; j++ ) {     //go through all lines
+          for( int i = 0; i < IMWD; i++ ) { //go through each pixel per line
 
-        // populate board in local memory
-        board[i][j] = val;
+              //read the pixel value
+              c_in :> val;
 
-    }
+              // populate board in local memory
+              board[workerId][i][j] = val;
+
+          }
+      }
   }
+
   toLeds <: 0;
 
 
@@ -305,7 +304,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
                   printf("\n-------------INTERMEDIATE STATUS REPORT-----------------\n");
                   printf( "\n%d processing round(s) completed...\n", iterations );
                   printf( "\nTotal time elapsed since start: %u ms\n", total_time );
-                  printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
+                  printf( "\nCurrent number of live cells: %d\n", total_alive(board) );
                   printf("\n--------------------------------------------------------\n");
 
               }
@@ -344,9 +343,18 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       toLeds <: flicker;
       iterations++;
 
+      for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+          workerI[0].process(board[workerId], workerId);
 
-      workerI[0].process(board, 0);
-      workerI[0].get(board, 0);
+      }
+
+      for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+          workerI[0].get(board[workerId], workerId);
+      }
+
+
+
+
 
   }
 
@@ -355,11 +363,14 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   t :> end_time;
   printf("Timer finished\n");
   toLeds <: 2;
-  for (int y = 0; y < IMHT; y++ ) {
-      for(int x = 0; x < IMWD; x++) {
-          c_out <: (uchar)(board[x][y]);
-      }
+  for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+      for (int y = 0; y < IMHT; y++ ) {
+            for(int x = 0; x < IMWD; x++) {
+                c_out <: (uchar)(board[workerId][x][y]);
+            }
+        }
   }
+
   // 0x00 - black
   // 0xFF - white
   toLeds <: 16;
@@ -462,11 +473,7 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
             tilted = tilted - 1;
             toDist <: 0;
         }
-
     }
-
-
-
   }
 }
 
@@ -494,9 +501,9 @@ par {
 
     on tile [1]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
     on tile [1]:worker(workerI[0],0);
-    on tile [1]:worker(workerI[1],1);
-    on tile [0]:worker(workerI[2],2);
-    on tile [0]:worker(workerI[3],3);
+//    on tile [1]:worker(workerI[1],1);
+//    on tile [0]:worker(workerI[2],2);
+//    on tile [0]:worker(workerI[3],3);
   }
 
   return 0;
