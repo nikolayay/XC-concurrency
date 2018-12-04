@@ -216,7 +216,6 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 //  int tilt;
   uchar val;
   uchar board[IMHT][IMWD];
-  uchar next_board[IMHT][IMWD];
 
   // Timer and its values
   timer t;
@@ -349,19 +348,6 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       workerI[0].process(board, 0);
       workerI[0].get(board, 0);
 
-//      for (int y = 0; y < IMHT; y++ ) {
-//          for(int x = 0; x < IMWD; x++) {
-//              uchar nextCellState = calculateNextCellState(board, x, y);
-//              next_board[x][y] = nextCellState;
-//          }
-//      }
-//
-//      // Copy board for next iteration.
-//      for (int y = 0; y < IMHT; y++ ) {
-//          for(int x = 0; x < IMWD; x++) {
-//              board[x][y] = next_board[x][y];
-//          }
-//      }
   }
 
   // Send all pixels back.
@@ -371,7 +357,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   toLeds <: 2;
   for (int y = 0; y < IMHT; y++ ) {
       for(int x = 0; x < IMWD; x++) {
-          c_out <: (uchar)(next_board[x][y]);
+          c_out <: (uchar)(board[x][y]);
       }
   }
   // 0x00 - black
@@ -391,7 +377,7 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
   printf( "\nTotal time elapsed: %u ms\n", total_time );
   printf( "\nTime spent processing: %u ms\n", processing_time);
   printf( "\nTotal IDLE TIME elapsed: %u ms\n", total_idle_time );
-  printf( "\nCurrent number of live cells: %d\n", total_alive(next_board) );
+  printf( "\nCurrent number of live cells: %d\n", total_alive(board) );
   printf("\n---------------------------------------------------\n");
 
 
