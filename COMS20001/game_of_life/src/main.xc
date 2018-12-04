@@ -7,15 +7,16 @@
 #include "pgmIO.h"
 #include "i2c.h"
 
-#define  IMHT 64                 //image height
-#define  IMWD 64                  //image width
+#define  IMHT 16               //image height
+#define  IMWD 16                  //image width
 
 // Must be power of 2
-#define  NUM_WORKERS 4
+#define  NUM_WORKERS 8
+
 #define  FARMHT IMHT/NUM_WORKERS
 #define  ITERATIONS 100
 
-char infname[] = "64x64.pgm";     //put your input image path here
+char infname[] = "test.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
 
 typedef unsigned char uchar;      //using uchar as shorthand
@@ -211,6 +212,8 @@ void worker(server interface i workerI, int worker_id) {
                 memcpy(localBoard,board,(FARMHT + 2) * IMWD * sizeof(uchar));
                 processing = 1;
                 break;
+
+
             }
 
         if (processing) {
@@ -511,7 +514,7 @@ void orientation( client interface i2c_master_if i2c, chanend toDist) {
 int main(void) {
 
 i2c_master_if i2c[1];               //interface to orientation
-interface i workerI[NUM_WORKERS];
+interface i workerI[8];
 
 chan c_inIO, c_outIO, c_control;    //extend your channel definitions here
 chan buttonsToDistributor;
@@ -525,11 +528,17 @@ par {
     on tile [0]:buttonListener(buttons, buttonsToDistributor);
     on tile [0]:showLEDs(leds,ledsToDistributor);
 
-    on tile [1]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
+    on tile [0]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
     on tile [1]:worker(workerI[0],0);
     on tile [1]:worker(workerI[1],1);
-    on tile [0]:worker(workerI[2],2);
-    on tile [0]:worker(workerI[3],3);
+    on tile [1]:worker(workerI[2],2);
+    on tile [1]:worker(workerI[3],3);
+    on tile [1]:worker(workerI[4],4);
+    on tile [1]:worker(workerI[5],5);
+    on tile [1]:worker(workerI[6],6);
+    on tile [1]:worker(workerI[7],7);
+
+
   }
 
   return 0;
