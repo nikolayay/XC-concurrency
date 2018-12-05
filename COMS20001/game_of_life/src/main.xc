@@ -219,7 +219,6 @@ void worker(server interface i workerI, int worker_id) {
         if (processing) {
             // iterate over board
             for (int y = 0; y < FARMHT; y++){
-//                printf("Worker %d: Processing row %d\n", worker_id, y);
                 for (int x = 0; x < IMWD; x++){
                     uchar nextCellState = calculateNextCellState(localBoard, x, y);
                     processed[y][x] = nextCellState;
@@ -364,7 +363,9 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       toLeds <: flicker;
       iterations++;
 
+      // populate worker ghost rows
       for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
+
           int nextWorkerId = ((workerId + 1) + NUM_WORKERS) % NUM_WORKERS;
           int prevWorkerId = ((workerId - 1) + NUM_WORKERS) % NUM_WORKERS;
 
@@ -527,8 +528,8 @@ par {
     on tile [0]:DataOutStream(outfname, c_outIO);       //thread to write out a PGM image
     on tile [0]:buttonListener(buttons, buttonsToDistributor);
     on tile [0]:showLEDs(leds,ledsToDistributor);
-
     on tile [0]:distributor(c_inIO, c_outIO, c_control, buttonsToDistributor, ledsToDistributor, workerI);//thread to coordinate work on image
+
     on tile [1]:worker(workerI[0],0);
     on tile [1]:worker(workerI[1],1);
     on tile [1]:worker(workerI[2],2);
