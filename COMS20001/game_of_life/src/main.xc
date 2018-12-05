@@ -4,17 +4,22 @@
 #include <platform.h>
 #include <xs1.h>
 #include <stdio.h>
+#include <assert.h>
 #include "pgmIO.h"
 #include "i2c.h"
 
+#define  INIMHT 16               // input image height
+#define  INIMWD 16               // input image width
+
+
 #define  IMHT 16               //image height
-#define  IMWD 16                  //image width
+#define  IMWD (INIMWD / 8)                 //image width
 
 // Must be power of 2
 #define  NUM_WORKERS 8
 
 #define  FARMHT IMHT/NUM_WORKERS
-#define  ITERATIONS 100
+#define  ITERATIONS 0
 
 char infname[] = "test.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
@@ -47,20 +52,20 @@ on tile[0] : out port leds = XS1_PORT_4F;
 void DataInStream(char infname[], chanend c_out)
 {
   int res;
-  uchar line[ IMWD ];
+  uchar line[ INIMWD ];
   printf( "DataInStream: Start...\n" );
 
   //Open PGM file
-  res = _openinpgm( infname, IMWD, IMHT );
+  res = _openinpgm( infname, INIMWD, INIMHT );
   if( res ) {
     printf( "DataInStream: Error openening %s\n.", infname );
     return;
   }
 
   //Read image line-by-line and send byte by byte to channel c_out
-  for( int y = 0; y < IMHT; y++ ) {
-    _readinline( line, IMWD );
-    for( int x = 0; x < IMWD; x++ ) {
+  for( int y = 0; y < INIMHT; y++ ) {
+    _readinline( line, INIMWD );
+    for( int x = 0; x < INIMWD; x++ ) {
       c_out <: line[ x ];
 //      printf( "-%4.1d ", line[ x ] ); //show image values
     }
@@ -130,14 +135,21 @@ int y_add (int i, int a) {
 }
 
 // arg 1 (board) matches board type from distrubutor function
-int total_alive(uchar board[NUM_WORKERS][FARMHT + 2][IMHT]) {
+int total_alive(uchar board[NUM_WORKERS][FARMHT + 2][IMWD]) {
     int count = 0;
     for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
         for( int y = 0; y < FARMHT; y++ ) {   //go through all lines
             for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
-               if (board[workerId][y][x] != 0) {
-                   count+=1;
+               uchar packed = board[workerId][y][x];
+
+               for (int bit = 0; bit < 8; bit++) {
+                   uchar unpacked = packed >> ( 7 - bit) & 1;
+                   if (unpacked) {
+                       count++;
+                   }
                }
+
+
             }
         }
     }
@@ -160,6 +172,21 @@ int count_alive(uchar board[FARMHT+2][IMWD], int x, int y) {
 
 // + 2 for ghost rows
 unsigned char calculateNextCellState(uchar board[FARMHT + 2][IMWD], int x, int y) {
+
+    // block = board[y][x]
+
+    // unpack the block
+
+    for (int bit = 0; bit < 8; bit++) {
+
+    }
+
+    // process each cells
+
+    // put back together and return
+
+
+
     // 1.Count neighbours.
     int alive = count_alive(board, x, y);
 
@@ -220,7 +247,10 @@ void worker(server interface i workerI, int worker_id) {
             // iterate over board
             for (int y = 0; y < FARMHT; y++){
                 for (int x = 0; x < IMWD; x++){
+                    // pass an 8 bit block of cells to process
                     uchar nextCellState = calculateNextCellState(localBoard, x, y);
+
+                    // return the processed block
                     processed[y][x] = nextCellState;
                 }
             }
@@ -253,11 +283,24 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       for( int y = 0; y < FARMHT; y++ ) {     //go through all lines
           for( int x = 0; x < IMWD; x++ ) { //go through each pixel per line
 
-              //read the pixel value
-              c_in :> val;
+              // bitpack
+              uchar packed = 0;
+              for (int j = 0; j < 8; j++){
+                  c_in :> val;
+                  packed |= (val == 255) << (7 - j);
+              }
+              board[workerId][y][x] = packed;
 
-              // populate board in local memory
-              board[workerId][y][x] = val;
+
+
+
+
+
+//              //read the pixel value
+//              c_in :> val;
+//
+//              // populate board in local memory
+//              board[workerId][y][x] = val;
 
           }
       }
@@ -289,16 +332,19 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
       printf("Wrong button dumbass!\n");
   }
 
-  t :> start_time;
-  printf("Timer started\n");
+
 
   // Repeatedly run processing on a board iteration.
   while(running && iterations < ITERATIONS) {
+      t :> start_time;
+      printf("Timer started\n");
       // control distributor
       select {
           // stop processing
           case fromButtons :> buttonInput: {
               if(buttonInput == 13) {
+                  t :> end_time;
+                  printf("Timer finished\n");
                   running = 0;
               }
               break;
@@ -390,13 +436,17 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 
   // Send all pixels back.
   // Set LED to blue on output.
-  t :> end_time;
-  printf("Timer finished\n");
+
   toLeds <: 2;
   for (int workerId = 0; workerId < NUM_WORKERS; workerId++) {
       for (int y = 0; y < FARMHT; y++ ) {
             for(int x = 0; x < IMWD; x++) {
-                c_out <: (uchar)(board[workerId][y][x]);
+                uchar result = board[workerId][y][x];
+                // bit unpack
+                for (int i = 0;i<8;i++){
+                    uchar val =  (result >>(7-i) &1)*255;
+                    c_out <: val;
+                }
             }
         }
   }
@@ -433,22 +483,22 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
 void DataOutStream(char outfname[], chanend c_in)
 {
   int res;
-  uchar line[ IMWD ];
+  uchar line[ INIMWD ];
 
   //Open PGM file
   printf( "DataOutStream: Start...\n" );
-  res = _openoutpgm( outfname, IMWD, IMHT );
+  res = _openoutpgm( outfname, INIMWD, INIMHT );
   if( res ) {
     printf( "DataOutStream: Error opening %s\n.", outfname );
     return;
   }
 
   //Compile each line of the image and write the image line-by-line
-  for( int y = 0; y < IMHT; y++ ) {
-    for( int x = 0; x < IMWD; x++ ) {
+  for( int y = 0; y < INIMHT; y++ ) {
+    for( int x = 0; x < INIMWD; x++ ) {
       c_in :> line[x];
     }
-    _writeoutline( line, IMWD );
+    _writeoutline( line, INIMWD );
 //    printf( "DataOutStream: Line written...\n" );
   }
 
