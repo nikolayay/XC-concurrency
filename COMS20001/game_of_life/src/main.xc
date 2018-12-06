@@ -8,8 +8,8 @@
 #include "pgmIO.h"
 #include "i2c.h"
 
-#define  INIMHT 512               // input image height
-#define  INIMWD 512               // input image width
+#define  INIMHT 256               // input image height
+#define  INIMWD 256               // input image width
 
 
 #define  IMHT INIMHT               //image height
@@ -19,9 +19,9 @@
 #define  NUM_WORKERS 8
 
 #define  FARMHT IMHT/NUM_WORKERS
-#define  ITERATIONS 100
+#define  ITERATIONS 2
 
-char infname[] = "512x512.pgm";     //put your input image path here
+char infname[] = "256x256.pgm";     //put your input image path here
 char outfname[] = "testout.pgm"; //put your output image path here
 
 typedef unsigned char uchar;      //using uchar as shorthand
@@ -175,98 +175,20 @@ int total_alive(uchar board[NUM_WORKERS][FARMHT + 2][IMWD]) {
     return count;
 }
 
-uchar getBit(uchar world[][IMWD], int x, int y) {
-  int byteX = x / 8;
-  int bitX = x % 8;
-  return world[y][byteX] >> (8 - (bitX + 1)) & 1;
+uchar getBit(uchar board[][IMWD], int x, int y) {
+  int offset = x % 8;
+  return board[y][x / 8] >> (8 - (offset + 1)) & 1;
 }
 
-void setBit(uchar world[][IMWD], int x, int y, int bit) {
-    int byteX = x / 8;
-    int bitX = x % 8;
+void setBit(uchar board[][IMWD], int x, int y, int bit) {
+    int offset = x % 8;
     if (bit) {
-        world[y][byteX] = world[y][byteX] | (1 << (8 - (bitX + 1)));
-
+        board[y][x / 8] = board[y][x / 8] | (1 << (8 - (offset + 1)));
     } else {
-        world[y][byteX] = world[y][byteX] & ((1 << (8 - (bitX + 1))) ^ 255);
+        board[y][x / 8] = board[y][x / 8] & ((1 << (8 - (offset + 1))) ^ 255);
 
     }
-
 }
-
-// + 2 for ghost rows
-int count_alive(uchar board[FARMHT+2][IMWD], int x, int y, int i) {
-//    int k, l, count;
-//    count = 0;
-//    /* go around the cell */
-//    for (k=-1; k<=1; k++) for (l=-1; l<=1; l++)
-//        /* only count if at least one of k,l isn't zero */
-//        if (k || l) {
-//            if (board[y_add(y, k)][x_add(x, l)]) count++;
-//        }
-//    return count;
-
-    int k, l, count;
-    count = 0;
-
-
-    for (k=-1; k<=1; k++){
-        for (l=-1; l<=1; l++){
-            if(k || l){
-                uchar block = board[y_add(y, k)][x_add(x, l, i)];
-                uchar shift = bit_add(i, l);
-//                if(getBit(board, x, y, shift)) count++;
-                count += ((block >> shift) & 1);
-//                int shifted = ((current_bit << (shift)) & 1);
-//                printf("Shifted: %d\n", shifted);
-            }
-        }
-    }
-    if (count) {
-        printf("Count: %d\n", count);
-
-    }
-    return count;
-}
-
-//// + 2 for ghost rows
-//unsigned char calculateNextBlockState(uchar board[FARMHT + 2][IMWD], int x, int y) {
-//
-//    uchar return_block = 0;
-//
-//    // 1.Count neighbours.
-//    for(int i = 0; i < 8; i++){
-//
-//        int alive = 0;
-//        int k, l;
-//
-//        alive = count_alive(board, x, y, i);
-//
-//        if ( getBit(board, x, y, i)) {
-//            printf("cell on\n");
-//            if ( (alive > 3) || ( alive < 2 ) ) {
-//                    // DEAD
-//                    return_block |= (0 << (7 - i));
-//                } else {
-//                    // ALIVE
-//                    printf("on\n");
-//                    return_block |= (1 << (7 - i));
-//                }
-//        } else {
-//                if ( alive == 3 ) {
-//                    // ALIVE
-//                    printf("off\n");
-//                    return_block |= (1 << (7 - i));
-//                } else {
-//                    // DEAD
-//                    return_block |= (0 << (7 - i));
-//                }
-//        }
-//    }
-//
-//    return return_block;
-//}
-
 
 typedef interface i {
     void get(uchar board[FARMHT + 2][IMWD], int id);
@@ -378,17 +300,6 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
               }
               board[workerId][y][x] = packed;
 
-
-
-
-
-
-//              //read the pixel value
-//              c_in :> val;
-//
-//              // populate board in local memory
-//              board[workerId][y][x] = val;
-
           }
       }
   }
@@ -416,11 +327,10 @@ void distributor(chanend c_in, chanend c_out, chanend fromAcc, chanend fromButto
               continue;
           }
       }
-      printf("Wrong button dumbass!\n");
   }
 
   t :> start_time;
-        printf("Timer started\n");
+  printf("Timer started\n");
 
   // Repeatedly run processing on a board iteration.
   while(running && iterations < ITERATIONS) {
